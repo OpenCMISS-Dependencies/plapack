@@ -1,0 +1,19 @@
+#!/bin/csh
+#PBS -l nodes=32:ppn=2
+#PBS -l walltime=01:00:00
+#PBS -j oe
+#PBS -N LINPACK
+#PBS
+limit coredumpsize 0
+cd $PBS_O_WORKDIR
+set NN = `cat $PBS_NODEFILE | wc -l`
+echo "NN = "$NN
+#
+# Run MPICH-GM Job.  (note that, as of mpich-1.2.4..8 the syntax of mpirun.ch_gm
+#                     is quite similar to that of standard MPICH)
+#
+date
+#echo "4 16 5000 16 104 0"| /util/mpich-gm/gnu/current/bin/mpirun.ch_gm -machinefile $PBS_NODEFILE -np $NN ./linpack.x >! file1
+echo "4 16 50000 32 104 0"| /util/mpich-gm/gnu/current/bin/mpirun.ch_gm -machinefile $PBS_NODEFILE -np $NN ./linpack.x
+date
+    

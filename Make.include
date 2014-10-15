@@ -1,0 +1,87 @@
+# Top level PLAPACK directory.  
+
+MYHOME 	= /home/pb24
+PLAPACK_ROOT = $(MYHOME)/PLAPACKR32
+
+# Choose Manufacture  type from following list.
+CRAY  = 10
+IBM   = 20
+INTEL = 30
+SUN   = 40
+PC    = 50
+SGI   = 60
+HP    = 70
+
+MANUFACTURE   = $(PC)
+
+# Choose Machine type from above list.
+CRAYPVP   = 100
+CRAYMPP   = 101
+PARAGON   = 200
+SP2       = 300
+SUNOS     = 400
+LINUX     = 500
+NT        = 600
+
+MACHINE_TYPE  = $(LINUX)
+
+# Choose Manufacture and Machine type from above list.
+MANUFACTURE   = $(PC)
+MACHINE_TYPE  = $(LINUX)
+
+# Install a BLAS library or ask your system administrator
+# where the BLAS library is installed.
+# (for a generic implementation that attains reasonable
+# performance see http://www.netlib.org/atlas/.  We hope to
+# soon have our own BLAS library.  
+# See http://www.cs.utexas.edu/users/plapack/TXBLAS for
+# further information.  In addition, check out
+# http://www.cs.utk.edu/~ghenry/distrib/ for optimized kernels for
+# LINUX on Intel platforms.)
+
+
+#BLASLIB =  $(MYHOME)/SCALAPACK/libf77blas.a $(MYHOME)/SCALAPACK/libatlas.a 
+BLASLIB	= $(MYHOME)/libgoto_p4_512.a \
+	/home/jonesm/lib/Linux_P4SSE2/libf77blas.a \
+	/home/jonesm/lib/Linux_P4SSE2/libatlas.a
+
+#$(MYHOME)/LAPACK/blas_LINUX.a
+
+CFLAGS = -O3  -I$(PLAPACK_ROOT)/INCLUDE \
+         -DMACHINE_TYPE=$(MACHINE_TYPE) -DMANUFACTURE=$(MANUFACTURE)  \
+	 -DDEBUG=0 -L/usr/lib/gcc-lib/i386-redhat-linux/2.96
+
+FFLAGS =  -O3 -I$(PLAPACK_ROOT)/INCLUDE
+
+CC     = /util/mpich-gm/gnu/ch_gm/bin/mpicc
+FC     = /util/mpich-gm/gnu/ch_gm/bin/mpif77
+#CC     = /util/TEST/mpich-gm/gnu/ch_gm/bin/mpicc
+#FC     = /util/TEST/mpich-gm/gnu/ch_gm/bin/mpif77
+AR     = ar
+SED    = sed
+RANLIB = ranlib
+#LINKER = $(FC)
+LINKER = $(CC)
+LFLAGS = $(CFLAGS)
+
+# If you intend to use the eigensolver or SVD library, 
+# install LAPACK or ask your system administrator where to
+# find it on your system.  For information see
+# http://www.netlib.org/lapack/
+
+SEQ_LAPACK = $(MYHOME)/LAPACK/lapack_LINUX.a $(MYHOME)/LAPACK/tmglib_LINUX.a
+
+
+PLAPACKLIB =  $(PLAPACK_ROOT)/libPLAPACK.a 
+lapackLIB  = $(SEQ_LAPACK)
+
+# LIB = $(lapackLIB) $(BLASLIB) -L/public/lib -static -lm -lc
+# LIB = $(lapackLIB) $(BLASLIB) -pthread -static -lm -lc
+LIB = $(lapackLIB) $(BLASLIB) -pthread -static -lm -lg2c
+
+
+ 
+POST_MAKE = chmod ugo+rw *.a
+
+
+

@@ -1,0 +1,18 @@
+#!/bin/csh 
+#PBS -l walltime=00:10:00
+#PBS -l nodes=4:ppn=2
+#PBS -N PLA-TEST
+#PBS -j oe 
+
+limit coredumpsize 0
+set NN = `cat $PBS_NODEFILE | wc -l`
+echo "NN = "$NN
+cd $PBS_O_WORKDIR
+cat $PBS_NODEFILE | awk '{printf "%s.ccr.buffalo.edu\n",$1}' >! newlist
+date
+echo "4\n2\n16\n96\n0\n0\n0\n1\n2500\n-1\n" | /util/mpich/gnu/bin/mpirun  -machinefile newlist -np $NN ./test_lu.x
+date
+
+#cd /home/utexas/cs/cs378a/tmp
+#cat $PBS_NODEFILE
+#echo "4 4 32 128 0 0 0 1 1000 -1" | mpirun -np 16 test_spectral_decomp.x

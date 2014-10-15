@@ -1,0 +1,63 @@
+#############################PBS PROLOGUE##############################
+PBS prologue script run on host bb18n04 at Tue Nov 12 19:09:04 EST 2002
+  created bb18n04:/scratch/7869.joplin.ccr.buffalo.edu
+  created bb18n03:/scratch/7869.joplin.ccr.buffalo.edu
+  created bb18n02:/scratch/7869.joplin.ccr.buffalo.edu
+  created bb18n01:/scratch/7869.joplin.ccr.buffalo.edu
+#############################PBS PROLOGUE##############################
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+PBSTMPDIR is /scratch/7869.joplin.ccr.buffalo.edu
+PBSTMPDIR is /scratch/7869.joplin.ccr.buffalo.edu
+NN = 8
+Tue Nov 12 19:09:05 EST 2002
+enter mesh size:
+mesh size  = 4 x 2 
+enter distr. block size:
+nb_distr = 16
+enter alg. block size:
+nb_alg = 96
+turn on error checking? (0 = NO, 1 = YES):
+error checking = 0
+turn on parameter checking? (0 = NO, 1 = YES):
+parameter checking = 0
+turn on sequential checking? (0 = NO, 1 = YES):
+sequential checking = 0
+enter datatype:
+-1 = quit
+ 0 = float
+ 1 = double
+ 2 = complex
+ 3 = double complex
+itype = 1
+enter n:
+n = 2500
+2500 time = 46.618897, MFLOPS/node =    27.9304 
+enter datatype:
+-1 = quit
+ 0 = float
+ 1 = double
+ 2 = complex
+ 3 = double complex
+itype = -1
+Tue Nov 12 19:09:56 EST 2002
+#############################PBS EPILOGUE##############################
+PBS epilogue script run on host bb18n04 at Tue Nov 12 19:09:56 EST 2002
+    for  8 processes.
+Cleaning up processes on node bb18n04 for user pb24
+ pids to kill: 
+ cmds to kill: 
+  deleting bb18n04: /scratch/7869.joplin.ccr.buffalo.edu, /scratch/pb24
+Cleaning up processes on node bb18n03 for user pb24
+ pids to kill: 
+ cmds to kill: 
+  deleting bb18n03: /scratch/7869.joplin.ccr.buffalo.edu, /scratch/pb24
+Cleaning up processes on node bb18n02 for user pb24
+ pids to kill: 
+ cmds to kill: 
+  deleting bb18n02: /scratch/7869.joplin.ccr.buffalo.edu, /scratch/pb24
+Cleaning up processes on node bb18n01 for user pb24
+ pids to kill: 
+ cmds to kill: 
+  deleting bb18n01: /scratch/7869.joplin.ccr.buffalo.edu, /scratch/pb24
+#############################PBS EPILOGUE##############################
