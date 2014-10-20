@@ -1,22 +1,17 @@
 PROJECT (PLAPACK C Fortran)
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8 FATAL_ERROR)
 
-# TODO machine types & manufacturer
-# enable make test
-#ENABLE_TESTING()
+SET(CMAKE_PREFIX_PATH ${OPENCMISS_DEPENDENCIES_CONFIGS_DIR} ${CMAKE_PREFIX_PATH})
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${OPENCMISS_DEPENDENCIES_LIBRARIES})
 
-FIND_PACKAGE(BLAS REQUIRED)
-FIND_PACKAGE(LAPACK REQUIRED)
+FIND_PACKAGE(BLAS CONFIG REQUIRED)
+FIND_PACKAGE(LAPACK CONFIG REQUIRED)
 FIND_PACKAGE(MPI REQUIRED)
 
 SET(CMAKE_C_COMPILER ${MPI_C_COMPILER})
 SET(CMAKE_C_FLAGS "-O3 -DMACHINE_TYPE=500 -DMANUFACTURE=50 -DDEBUG=0")
 SET(CMAKE_Fortran_COMPILER ${MPI_Fortran_COMPILER})
 SET(CMAKE_Fortran_FLAGS "-fno-f2c -O3 -Q")
-
-
-# pathes where to look for header files
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/INCLUDE ${MPI_C_INCLUDE_PATH} ${MPI_Fortran_INCLUDE_PATH})
 
 # create mtocpp
 file(GLOB template TEMPLATE/*.c)
@@ -33,4 +28,9 @@ file(GLOB io IO/*.c)
 file(GLOB_RECURSE slv SOLVERS/*.c)
 file(GLOB pla POOCLAPACK/*.c)
 file(GLOB fortran FORTRAN_interface/*.c FORTRAN_interface/*.f)
-ADD_LIBRARY(PLAPACK STATIC ${template} ${api} ${blas1} ${blas2} ${blas3} ${copy} ${lblas} ${obj} ${reduce} ${util} ${io} ${pla} ${fortran})
+add_library(plapack STATIC ${template} ${api} ${blas1} ${blas2} ${blas3} ${copy} ${lblas} ${obj} ${reduce} ${util} ${io} ${pla} ${fortran})
+target_link_libraries(plapack blas lapack)
+
+# need also mpi for plapack (c/fortran)
+TARGET_INCLUDE_DIRECTORIES(plapack PRIVATE INCLUDE ${MPI_C_INCLUDE_PATH} ${MPI_Fortran_INCLUDE_PATH})
+export(TARGETS plapack FILE ${OPENCMISS_DEPENDENCIES_CONFIGS_DIR}/plapack-config.cmake) 
