@@ -8,7 +8,7 @@
    PLAPACK root directory.
 */
 
-g#include "PLA.h"
+#include "PLA.h"
 
 int PLA_QR_right_update( PLA_Obj A, PLA_Obj s )
 

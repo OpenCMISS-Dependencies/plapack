@@ -1,8 +1,14 @@
 PROJECT (PLAPACK C Fortran)
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8 FATAL_ERROR)
 
-SET(CMAKE_PREFIX_PATH ${OPENCMISS_DEPENDENCIES_CONFIGS_DIR} ${CMAKE_PREFIX_PATH})
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${OPENCMISS_DEPENDENCIES_LIBRARIES})
+if (OPENCMISS_DEPENDENCIES_LIBRARIES)
+    SET(CMAKE_PREFIX_PATH ${OPENCMISS_DEPENDENCIES_CONFIGS_DIR} ${CMAKE_PREFIX_PATH})
+    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${OPENCMISS_DEPENDENCIES_LIBRARIES})
+    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OPENCMISS_DEPENDENCIES_LIBRARIES})
+else()
+    SET(CMAKE_PREFIX_PATH ../cmake ${CMAKE_PREFIX_PATH})
+    SET(OPENCMISS_DEPENDENCIES_CONFIGS_DIR ${CMAKE_CURRENT_BINARY_DIR})
+endif()
 
 FIND_PACKAGE(BLAS CONFIG REQUIRED)
 FIND_PACKAGE(LAPACK CONFIG REQUIRED)
@@ -25,12 +31,31 @@ file(GLOB obj OBJ/*.c)
 file(GLOB reduce REDUCE/*.c)
 file(GLOB util UTIL/*.c)
 file(GLOB io IO/*.c)
-file(GLOB_RECURSE slv SOLVERS/*.c)
+file(GLOB slv_c SOLVERS/Cholesky/*.c)
+file(GLOB slv_e SOLVERS/Eigensolvers/*.c)
+file(GLOB slv_i SOLVERS/Invert/*.c)
+file(GLOB slv_l SOLVERS/LINPACK/*.c)
+file(GLOB slv_lu SOLVERS/LU/*.c)
+file(GLOB slv_qr SOLVERS/QR/*.c)
+SET(slv_r
+    SOLVERS/Reduction/PLA_Apply_sym_House.c 
+    SOLVERS/Reduction/PLA_Tri_red.c 
+    SOLVERS/Reduction/PLA_Tri_red_enter_exit.c 
+    SOLVERS/Reduction/PLA_Create_sym_eigenproblem.c 
+    SOLVERS/Reduction/PLA_Bi_red_simple.c 
+    SOLVERS/Reduction/PLA_Bi_red_enter_exit.c
+    SOLVERS/Reduction/PLA_Create_svd_problem.c
+)
+file(GLOB slv_s SOLVERS/SVD/*.c)
+SET(slv ${slv_c} ${slv_e} ${slv_i} ${slv_l} ${slv_lu} ${slv_qr} ${slv_r} ${slv_s})
 file(GLOB pla POOCLAPACK/*.c)
 file(GLOB fortran FORTRAN_interface/*.c FORTRAN_interface/*.f)
-add_library(plapack STATIC ${template} ${api} ${blas1} ${blas2} ${blas3} ${copy} ${lblas} ${obj} ${reduce} ${util} ${io} ${pla} ${fortran})
+add_library(plapack STATIC ${template} ${api} ${blas1} ${blas2} ${blas3} ${lblas} ${copy} ${obj} ${reduce} ${util} ${io} ${pla} ${fortran} ${slv})
 target_link_libraries(plapack blas lapack)
 
 # need also mpi for plapack (c/fortran)
 TARGET_INCLUDE_DIRECTORIES(plapack PRIVATE INCLUDE ${MPI_C_INCLUDE_PATH} ${MPI_Fortran_INCLUDE_PATH})
-export(TARGETS plapack FILE ${OPENCMISS_DEPENDENCIES_CONFIGS_DIR}/plapack-config.cmake) 
+export(TARGETS plapack FILE ${OPENCMISS_DEPENDENCIES_CONFIGS_DIR}/plapack-config.cmake)
+
+enable_testing()
+add_subdirectory(TEST)
