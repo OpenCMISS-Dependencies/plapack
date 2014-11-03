@@ -7,7 +7,7 @@ if (OPENCMISS_DEPENDENCIES_LIBRARIES)
 else()
     SET(CMAKE_PREFIX_PATH ../cmake/release ../cmake/debug ${CMAKE_PREFIX_PATH})
     SET(OPENCMISS_DEPENDENCIES_CONFIGS_DIR ${CMAKE_CURRENT_BINARY_DIR})
-    SET(BUILD_TESTING ON)
+    SET(BUILD_TESTS ON)
 endif()
 
 FIND_PACKAGE(BLAS CONFIG REQUIRED)
@@ -55,14 +55,20 @@ target_link_libraries(plapack blas lapack)
 
 # need also mpi for plapack (c/fortran)
 TARGET_INCLUDE_DIRECTORIES(plapack
-    PUBLIC INCLUDE
-    PRIVATE ${MPI_C_INCLUDE_PATH} ${MPI_Fortran_INCLUDE_PATH})
-export(TARGETS plapack FILE ${OPENCMISS_DEPENDENCIES_CONFIGS_DIR}/plapack-${PLAPACK_VERSION}/plapack-config.cmake)
+    PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/INCLUDE> 
+    PRIVATE ${MPI_C_INCLUDE_PATH} ${MPI_Fortran_INCLUDE_PATH}
+)
+install(TARGETS plapack EXPORT plapack-config
+    DESTINATION lib
+    INCLUDES DESTINATION include)
+install(EXPORT plapack-config DESTINATION lib/cmake)
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/INCLUDE/ DESTINATION include
+        FILES_MATCHING PATTERN "*.h")
 include(CMakePackageConfigHelpers)
-WRITE_BASIC_PACKAGE_VERSION_FILE(${OPENCMISS_DEPENDENCIES_CONFIGS_DIR}/plapack-${PLAPACK_VERSION}/plapack-config-version.cmake
-    VERSION ${PLAPACK_VERSION} COMPATIBILITY AnyNewerVersion)
+WRITE_BASIC_PACKAGE_VERSION_FILE(${CMAKE_CURRENT_BINARY_DIR}/plapack-config-version.cmake COMPATIBILITY AnyNewerVersion)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/plapack-config-version.cmake DESTINATION lib/cmake)
 
-if (BUILD_TESTING)
+if (BUILD_TESTS)
     enable_testing()
     add_subdirectory(TEST)
 endif()
