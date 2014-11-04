@@ -6,7 +6,7 @@ ProcessorCount(SYSTEM_PROCESSOR_COUNT)
 MACRO(CREATE_TEST NAME)
     add_executable(${NAME} ${NAME}.c ${util})
     target_include_directories(${NAME} PRIVATE ../INCLUDE)
-    target_link_libraries(${NAME} plapack pthread) #blas lapack
+    target_link_libraries(${NAME} plapack pthread)
     if(UNIX)
       target_link_libraries(${NAME} g2c m)
     endif()

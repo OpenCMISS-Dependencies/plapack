@@ -3,8 +3,8 @@ PROJECT (PLAPACK VERSION 3.0 LANGUAGES C Fortran)
 
 option(BUILD_TESTS "${PROJECT_NAME} - Build tests" ON)
 
-#FIND_PACKAGE(BLAS CONFIG REQUIRED)
-#FIND_PACKAGE(LAPACK CONFIG REQUIRED)
+FIND_PACKAGE(BLAS CONFIG REQUIRED)
+FIND_PACKAGE(LAPACK CONFIG REQUIRED)
 FIND_PACKAGE(MPI REQUIRED)
 
 SET(CMAKE_C_COMPILER ${MPI_C_COMPILER})
@@ -66,7 +66,7 @@ SET(slv ${slv_c} ${slv_e} ${slv_i} ${slv_l} ${slv_lu} ${slv_qr} ${slv_r} ${slv_s
 file(GLOB pla POOCLAPACK/*.c)
 file(GLOB fortran FORTRAN_interface/*.c FORTRAN_interface/*.f)
 add_library(plapack STATIC ${template} ${api} ${blas1} ${blas2} ${blas3} ${lblas} ${copy} ${obj} ${reduce} ${util} ${io} ${pla} ${fortran} ${slv})
-target_link_libraries(plapack blas lapack)
+target_link_libraries(plapack PUBLIC blas lapack)
 
 # need also mpi for plapack (c/fortran)
 TARGET_INCLUDE_DIRECTORIES(plapack
