@@ -6,7 +6,7 @@ ProcessorCount(SYSTEM_PROCESSOR_COUNT)
 MACRO(CREATE_TEST NAME)
     add_executable(${NAME} ${NAME}.c ${util})
     target_include_directories(${NAME} PRIVATE ../INCLUDE)
-    target_link_libraries(${NAME} plapack lapack blas pthread)
+    target_link_libraries(${NAME} plapack pthread) #blas lapack
     if(UNIX)
       target_link_libraries(${NAME} g2c m)
     endif()
@@ -34,7 +34,7 @@ CREATE_TEST(test_trmm)
 CREATE_TEST(test_trsm)
 CREATE_TEST(test_chol)
 CREATE_TEST(test_gemv)
-#CREATE_TEST(test_trmv)
+#CREATE_TEST(test_trmv) # not implemented
 CREATE_TEST(test_diag)
 
 SET(util ${util} create_problem_ooc.c)

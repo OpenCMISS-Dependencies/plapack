@@ -1,21 +1,15 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
 PROJECT (PLAPACK VERSION 3.0 LANGUAGES C Fortran)
 
-if (OPENCMISS_DEPENDENCIES_LIBRARIES)
-    SET(CMAKE_PREFIX_PATH ${OPENCMISS_DEPENDENCIES_CONFIGS_DIR} ${CMAKE_PREFIX_PATH})
-    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${OPENCMISS_DEPENDENCIES_LIBRARIES})
-else()
-    SET(CMAKE_PREFIX_PATH ../cmake/release ../cmake/debug ${CMAKE_PREFIX_PATH})
-    SET(OPENCMISS_DEPENDENCIES_CONFIGS_DIR ${CMAKE_CURRENT_BINARY_DIR})
-    SET(BUILD_TESTS ON)
-endif()
+option(BUILD_TESTS "${PROJECT_NAME} - Build tests" ON)
 
-FIND_PACKAGE(BLAS CONFIG REQUIRED)
-FIND_PACKAGE(LAPACK CONFIG REQUIRED)
+#FIND_PACKAGE(BLAS CONFIG REQUIRED)
+#FIND_PACKAGE(LAPACK CONFIG REQUIRED)
 FIND_PACKAGE(MPI REQUIRED)
 
 SET(CMAKE_C_COMPILER ${MPI_C_COMPILER})
-SET(CMAKE_C_FLAGS "-O3 -DMACHINE_TYPE=500 -DMANUFACTURE=50 -DDEBUG=0")
+SET(CMAKE_C_FLAGS "-DMACHINE_TYPE=500 -DMANUFACTURE=50")
+SET(CMAKE_C_FLAGS_RELEASE "-O3 -DDEBUG=0")
 SET(CMAKE_Fortran_COMPILER ${MPI_Fortran_COMPILER})
 SET(CMAKE_Fortran_FLAGS "-fno-f2c -O3 -Q")
 
@@ -26,7 +20,28 @@ file(GLOB blas1 BLAS1/*.c)
 file(GLOB blas2 BLAS2/*.c)
 file(GLOB blas3 BLAS3/*.c)
 file(GLOB copy COPY/*.c)
-file(GLOB lblas Local_BLAS/*.c)
+SET(lblas 
+    Local_BLAS/PLA_Local_BLAS1.c 
+	Local_BLAS/PLA_Local_BLAS2.c 
+	Local_BLAS/PLA_Local_BLAS1_enter_exit.c 
+	Local_BLAS/PLA_Local_BLAS2_enter_exit.c 
+	Local_BLAS/PLA_Local_BLAS3_enter_exit.c 
+	Local_BLAS/PLA_Local_iamax.c 
+	Local_BLAS/PLA_Local_syr.c 
+	Local_BLAS/PLA_Local_syr2.c 
+    Local_BLAS/PLA_Local_gemm.c 
+    Local_BLAS/PLA_Local_symm.c 
+	Local_BLAS/PLA_Local_syrk.c 
+	Local_BLAS/PLA_Local_herk.c 
+	Local_BLAS/PLA_Local_syr2k.c 
+	Local_BLAS/PLA_Local_trsm.c 
+	Local_BLAS/PLA_Local_trmm.c 
+	Local_BLAS/PLA_Local_inquiry.c 
+	Local_BLAS/PLA_Local_misc.c 
+	Local_BLAS/PLA_Local_absolute_max.c 
+	Local_BLAS/PLA_Conjugate.c 
+	Local_BLAS/PLA_OMP_gemm.c
+)
 file(GLOB obj OBJ/*.c)
 file(GLOB reduce REDUCE/*.c)
 file(GLOB util UTIL/*.c)
