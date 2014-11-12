@@ -7,9 +7,6 @@ MACRO(CREATE_TEST NAME)
     add_executable(${NAME} ${NAME}.c ${util})
     target_include_directories(${NAME} PRIVATE ../INCLUDE)
     target_link_libraries(${NAME} plapack pthread)
-    if(UNIX)
-      target_link_libraries(${NAME} g2c m)
-    endif()
     add_test(${NAME} ${MPIEXEC} 
         ${MPIEXEC_NUMPROC_FLAG} ${SYSTEM_PROCESSOR_COUNT}
         ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${NAME})

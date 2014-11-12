@@ -66,7 +66,7 @@ SET(slv ${slv_c} ${slv_e} ${slv_i} ${slv_l} ${slv_lu} ${slv_qr} ${slv_r} ${slv_s
 file(GLOB pla POOCLAPACK/*.c)
 file(GLOB fortran FORTRAN_interface/*.c FORTRAN_interface/*.f)
 add_library(plapack STATIC ${template} ${api} ${blas1} ${blas2} ${blas3} ${lblas} ${copy} ${obj} ${reduce} ${util} ${io} ${pla} ${fortran} ${slv})
-target_link_libraries(plapack PUBLIC blas lapack)
+target_link_libraries(plapack PUBLIC blas lapack ${MPI_C_LIBRARIES} ${MPI_Fortran_LIBRARIES})
 
 # need also mpi for plapack (c/fortran)
 TARGET_INCLUDE_DIRECTORIES(plapack
