@@ -2,6 +2,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
 PROJECT (PLAPACK VERSION 3.0 LANGUAGES C Fortran)
 
 option(BUILD_TESTS "${PROJECT_NAME} - Build tests" ON)
+option(WITH_OPENMP "${PROJECT_NAME} - Use OpenMP" ON)
 
 find_package(BLAS ${BLAS_VERSION} REQUIRED)
 find_package(LAPACK ${LAPACK_VERSION} REQUIRED)
@@ -12,6 +13,17 @@ SET(CMAKE_C_FLAGS "-DMACHINE_TYPE=500 -DMANUFACTURE=50")
 SET(CMAKE_C_FLAGS_RELEASE "-O3 -DDEBUG=0")
 SET(CMAKE_Fortran_COMPILER ${MPI_Fortran_COMPILER})
 SET(CMAKE_Fortran_FLAGS "-fno-f2c -O3 -Q")
+
+if (WITH_OPENMP)
+  find_package(OpenMP)
+  if (OPENMP_FOUND)
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+    set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} ${OpenMP_Fortran_FLAGS}")
+  else()
+    message(WARNING "OpenMP requested but not found. Skipping.")
+  endif()
+endif()
 
 # create mtocpp
 file(GLOB template TEMPLATE/*.c)
