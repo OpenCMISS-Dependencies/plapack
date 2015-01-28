@@ -59,7 +59,7 @@ file(GLOB reduce REDUCE/*.c)
 file(GLOB util UTIL/*.c)
 file(GLOB io IO/*.c)
 file(GLOB slv_c SOLVERS/Cholesky/*.c)
-file(GLOB slv_e SOLVERS/Eigensolvers/*.c)
+file(GLOB slv_e SOLVERS/Eigensolvers/*.c SOLVERS/Eigensolvers/*.f)
 file(GLOB slv_i SOLVERS/Invert/*.c)
 file(GLOB slv_l SOLVERS/LINPACK/*.c)
 file(GLOB slv_lu SOLVERS/LU/*.c)
@@ -73,7 +73,7 @@ SET(slv_r
     SOLVERS/Reduction/PLA_Bi_red_enter_exit.c
     SOLVERS/Reduction/PLA_Create_svd_problem.c
 )
-file(GLOB slv_s SOLVERS/SVD/*.c)
+file(GLOB slv_s SOLVERS/SVD/*.c SOLVERS/SVD/*.f)
 SET(slv ${slv_c} ${slv_e} ${slv_i} ${slv_l} ${slv_lu} ${slv_qr} ${slv_r} ${slv_s})
 file(GLOB pla POOCLAPACK/*.c)
 file(GLOB fortran FORTRAN_interface/*.c FORTRAN_interface/*.f)

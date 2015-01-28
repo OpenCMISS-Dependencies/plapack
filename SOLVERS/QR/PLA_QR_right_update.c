@@ -91,8 +91,9 @@ int PLA_QR_right_update( PLA_Obj A, PLA_Obj s )
       PLA_Obj_horz_split_2( A1_mv, -width_A, PLA_DUMMY,
 			                     &A1_mv_B );
 
-      PLA_QR_mv_update( A1_mv_T, A1_mv_B, s1_dup );
-      /* PLA_QR_mv( A1_mv, s1_dup ); */
+      // Change by Daniel Wirtz 28-Jan-2015, symbol PLA_QR_mv_update defined nowhere in code
+      /*PLA_QR_mv_update( A1_mv_T, A1_mv_B, s1_dup );*/
+      PLA_QR_mv( A1_mv, s1_dup );
     }
 
     /* Place factored panel back in the right place and place
@@ -124,9 +125,9 @@ int PLA_QR_right_update( PLA_Obj A, PLA_Obj s )
 
       PLA_Obj_horz_split_2( Y_mv, -width_A, PLA_DUMMY,
 			                     &Y1_mv_B );
-
-      PLA_Compute_WY_update2( A1_mv_T, A1_mv_B, s1_dup, W1_mv_B, Y1_mv_B );
-      /* PLA_QR_mv( A1_mv, s1_dup ); */
+      // Removed by D. Wirtz on 28-Jan-2015, implementation of PLA_Compute_WY_update2 missing!
+      //PLA_Compute_WY_update2( A1_mv_T, A1_mv_B, s1_dup, W1_mv_B, Y1_mv_B );
+      PLA_QR_mv( A1_mv, s1_dup );
     }
 
     /* A2 <- ( I + W Y^T ) A2 */
@@ -149,7 +150,8 @@ int PLA_QR_right_update( PLA_Obj A, PLA_Obj s )
       PLA_Obj_horz_split_2( Y_mv, -width_A, PLA_DUMMY,
 			                    &Y_B );
 
-      pla_Apply_W_Y_transform_L_T_update( W_B, Y_B, A_T, A_B );
+      // Removed by D. Wirtz on 28-Jan-2015, implementation of pla_Apply_W_Y_transform_L_T_update missing!
+      /*pla_Apply_W_Y_transform_L_T_update( W_B, Y_B, A_T, A_B );*/
     
       PLA_Obj_free( &A_T );
       PLA_Obj_free( &A_B );

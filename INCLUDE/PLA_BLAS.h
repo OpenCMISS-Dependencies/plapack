@@ -842,7 +842,7 @@
           PLA_FOR2C(    zpotrf  ) (   uplo, n, a, lda, info )
 #else
 #define PLA_dsteqr_x( compz, m, n, d, e, z, ldz, work, info ) \
-          dsteqr_x__( compz, m, n, d, e, z, ldz, work, info )
+          dsteqr_x_( compz, m, n, d, e, z, ldz, work, info )
 
 #define PLA_dbdsqr_x( uplo, n, nv, nru, ncc, d, e, v, ldv, \
 		      u, ldu, c, ldc, work, info ) \
