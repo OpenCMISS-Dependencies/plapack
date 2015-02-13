@@ -2,6 +2,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
 PROJECT (PLAPACK VERSION 3.0 LANGUAGES C Fortran)
 
 option(BUILD_TESTS "${PROJECT_NAME} - Build tests" ON)
+option(PACKAGE_CONFIG_DIR "Directory for package config files (relative to CMAKE_INSTALL_PREFIX)" "lib/cmake")
 option(WITH_OPENMP "${PROJECT_NAME} - Use OpenMP" ON)
 
 find_package(BLAS ${BLAS_VERSION} REQUIRED)
@@ -88,7 +89,7 @@ TARGET_INCLUDE_DIRECTORIES(plapack
 install(TARGETS plapack EXPORT plapack-config
     DESTINATION lib
     INCLUDES DESTINATION include)
-install(EXPORT plapack-config DESTINATION lib/cmake)
+install(EXPORT plapack-config DESTINATION ${PACKAGE_CONFIG_DIR})
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/INCLUDE/ DESTINATION include
         FILES_MATCHING PATTERN "*.h")
 include(CMakePackageConfigHelpers)
