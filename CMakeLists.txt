@@ -94,7 +94,7 @@ install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/INCLUDE/ DESTINATION include
         FILES_MATCHING PATTERN "*.h")
 include(CMakePackageConfigHelpers)
 WRITE_BASIC_PACKAGE_VERSION_FILE(${CMAKE_CURRENT_BINARY_DIR}/plapack-config-version.cmake COMPATIBILITY AnyNewerVersion)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/plapack-config-version.cmake DESTINATION lib/cmake)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/plapack-config-version.cmake DESTINATION ${PACKAGE_CONFIG_DIR})
 
 if (BUILD_TESTS)
     enable_testing()
