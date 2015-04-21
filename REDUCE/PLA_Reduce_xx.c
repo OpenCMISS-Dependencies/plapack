@@ -32,7 +32,7 @@ int PLA_Reduce_xx( int shape, PLA_Obj Obj_from, MPI_Op op,
   PLA_Obj_global_length( Obj_to, &length );
   PLA_Obj_global_width( Obj_to, &width );
 
-  if ( length == 0 || width == 0 ) return;
+  if ( length == 0 || width == 0 ) return( PLA_FAILURE );
 
   PLA_Obj_objtype( Obj_from, &objtype_from );
 

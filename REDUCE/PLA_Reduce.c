@@ -30,7 +30,7 @@ int PLA_Reduce( PLA_Obj Obj_from, MPI_Op op, PLA_Obj Obj_to )
   PLA_Obj_global_length( Obj_to, &length );
   PLA_Obj_global_width( Obj_to, &width );
 
-  if ( length == 0 || width == 0 ) return;
+  if ( length == 0 || width == 0 ) return( PLA_FAILURE );
 
   PLA_Obj_objtype( Obj_from, &objtype_from );
 
@@ -877,7 +877,7 @@ int PLA_Reduce_from_dpmv_to_dpmv( PLA_Obj Obj_from, MPI_Op op, PLA_Obj Obj_to )
 int PLA_MPI_Allreduce( void *buffer_from, void *buffer_to, int size,
 		         MPI_Datatype datatype, MPI_Op op, MPI_Comm comm )
 {
-  if ( size == 0 ) return;
+  if ( size == 0 ) return( PLA_FAILURE );
 
   if ( MPI_COMPLEX == datatype )
     MPI_Allreduce( buffer_from, buffer_to, 2*size, MPI_FLOAT, op, comm );
@@ -891,7 +891,7 @@ int PLA_MPI_Reduce( void *buffer_from, void *buffer_to, int size,
 		      MPI_Datatype datatype, MPI_Op op, int root,
 		      MPI_Comm comm )
 {
-  if ( size == 0 ) return;
+  if ( size == 0 ) return( PLA_FAILURE );
 
   if ( MPI_COMPLEX == datatype )
     MPI_Reduce( buffer_from, buffer_to, 2*size, MPI_FLOAT, op, root, comm );

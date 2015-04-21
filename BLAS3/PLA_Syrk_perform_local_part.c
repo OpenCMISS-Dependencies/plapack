@@ -27,9 +27,9 @@ int PLA_Syrk_perform_local_part( int uplo,
 
 
   PLA_Obj_local_width( A, &local_size );
-  if ( 0 == local_size ) return;
+  if ( 0 == local_size ) return( PLA_FAILURE );
   PLA_Obj_local_length( A, &local_size );
-  if ( 0 == local_size ) return;
+  if ( 0 == local_size ) return( PLA_FAILURE );
 
   PLA_Obj_global_length( A, &length );
 
@@ -97,9 +97,9 @@ int PLA_Syrk_perform_local_part_by_panels(
     templ = NULL;
 
   PLA_Obj_local_width( A, &local_size );
-  if ( local_size == 0 ) return;
+  if ( local_size == 0 ) return( PLA_FAILURE );
   PLA_Obj_local_length( A, &local_size );
-  if ( local_size == 0 ) return;
+  if ( local_size == 0 ) return( PLA_FAILURE );
 
   PLA_Obj_view_all( A, &ABR );
   PLA_Obj_view_all( Xdpmv, &Xdpmv_cur );

@@ -94,6 +94,7 @@
 
 #define PLA_DUMMY         0
 #define PLA_SUCCESS       0
+#define PLA_FAILURE       1
 #define PLA_ALIGN_FIRST  -200 
 #define PLA_DIM_ALL      -201
 #define PLA_INHERIT      -202

@@ -18,7 +18,7 @@ int PLA_Obj_split_size_to_next_proc( PLA_Obj A, int side, int *size, int *owner 
   PLA_Obj_view_all( A, &Acur );
 
   PLA_Obj_split_size( Acur, side, size, owner );
-  if ( 0 == size ) return;
+  if ( 0 == size ) return( PLA_FAILURE );
 
   switch (side) {
   case PLA_SIDE_TOP:
