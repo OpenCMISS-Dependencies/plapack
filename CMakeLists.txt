@@ -20,7 +20,7 @@ endif()
 SET(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -fno-f2c -O3 -Q")
 
 if (WITH_OPENMP)
-  find_package(OpenMP)
+  find_package(OpenMP QUIET)
   if (OPENMP_FOUND)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
@@ -107,7 +107,20 @@ install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/INCLUDE/ DESTINATION include
         FILES_MATCHING PATTERN "*.h")
 include(CMakePackageConfigHelpers)
 WRITE_BASIC_PACKAGE_VERSION_FILE(${CMAKE_CURRENT_BINARY_DIR}/plapack-config-version.cmake COMPATIBILITY AnyNewerVersion)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/plapack-config-version.cmake DESTINATION ${PACKAGE_CONFIG_DIR})
+file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/plapack-config-dependencies.cmake 
+    "include(CMakeFindDependencyMacro)\r\n"
+    "set(_OLD_IMPORT_PREFIX \${_IMPORT_PREFIX})\r\n"
+)
+file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/plapack-config-dependencies.cmake "find_dependency(BLAS ${BLAS_VERSION})\r\n")
+file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/plapack-config-dependencies.cmake "find_dependency(LAPACK ${LAPACK_VERSION})\r\n")
+if (WITH_OPENMP)
+    file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/plapack-config-dependencies.cmake "find_dependency(OpenMP)\r\n")
+endif()
+file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/plapack-config-dependencies.cmake "set(_IMPORT_PREFIX \${_OLD_IMPORT_PREFIX})")
+install(FILES 
+    ${CMAKE_CURRENT_BINARY_DIR}/plapack-config-version.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/plapack-config-dependencies.cmake
+    DESTINATION ${PACKAGE_CONFIG_DIR})
 
 if (BUILD_TESTS)
     enable_testing()
