@@ -17,7 +17,9 @@ SET(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -O3 -DDEBUG=0")
 if(MPI_Fortran_COMPILER)
     SET(CMAKE_Fortran_COMPILER ${MPI_Fortran_COMPILER})
 endif()
-SET(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -fno-f2c -O3 -Q")
+if (CMAKE_COMPILER_IS_GNUFortran)
+    SET(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -fno-f2c -Q")
+endif()
 
 if (WITH_OPENMP)
   find_package(OpenMP QUIET)
@@ -97,7 +99,7 @@ endif()
 # need also mpi for plapack (c/fortran)
 TARGET_INCLUDE_DIRECTORIES(plapack
     PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/INCLUDE> 
-    PRIVATE ${MPI_C_INCLUDE_PATH} ${MPI_Fortran_INCLUDE_PATH}
+    ${MPI_C_INCLUDE_PATH} ${MPI_Fortran_INCLUDE_PATH}
 )
 install(TARGETS plapack EXPORT plapack-config
     DESTINATION lib
