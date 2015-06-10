@@ -7,7 +7,7 @@ option(WITH_OPENMP "${PROJECT_NAME} - Use OpenMP" ON)
 
 find_package(BLAS ${BLAS_VERSION} REQUIRED)
 find_package(LAPACK ${LAPACK_VERSION} REQUIRED)
-FIND_PACKAGE(MPI REQUIRED)
+find_package(MPI REQUIRED)
 
 if (MPI_C_COMPILER)
     SET(CMAKE_C_COMPILER ${MPI_C_COMPILER})
@@ -97,9 +97,10 @@ if (WIN32)
 endif()
 
 # need also mpi for plapack (c/fortran)
-TARGET_INCLUDE_DIRECTORIES(plapack
-    PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/INCLUDE> 
-    ${MPI_C_INCLUDE_PATH} ${MPI_Fortran_INCLUDE_PATH}
+target_include_directories(plapack PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/INCLUDE> 
+    $<BUILD_INTERFACE:${MPI_C_INCLUDE_PATH}>
+    $<BUILD_INTERFACE:${MPI_Fortran_INCLUDE_PATH}>
 )
 install(TARGETS plapack EXPORT plapack-config
     DESTINATION lib
