@@ -91,15 +91,12 @@ add_library(plapack ${template} ${api} ${blas1} ${blas2} ${blas3} ${lblas} ${cop
 target_include_directories(plapack PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/INCLUDE> 
 )
-target_link_libraries(plapack PUBLIC 
-    blas lapack 
-    ${MPI_C_LIBRARIES} ${MPI_Fortran_LIBRARIES}
-)
+target_link_libraries(plapack PUBLIC blas lapack)
 # need to include the include dirs when no compiler wrapper is found
 if (NOT MPI_C_COMPILER) # then will also not have MPI_Fortran_COMPILER
+    target_link_libraries(plapack PUBLIC ${MPI_C_LIBRARIES} ${MPI_Fortran_LIBRARIES})
     target_include_directories(plapack PUBLIC 
-        ${MPI_C_INCLUDE_PATH}
-        ${MPI_Fortran_INCLUDE_PATH}
+        ${MPI_C_INCLUDE_PATH} ${MPI_Fortran_INCLUDE_PATH}
     )
 endif()
 
