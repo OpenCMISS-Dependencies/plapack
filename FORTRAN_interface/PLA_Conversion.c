@@ -27,8 +27,12 @@
 
 #if MANUFACTURE == PC
 #undef PLA_FOR2C
-/* Changed from "__" to "_" by Daniel Wirtz, 28-Jan-2015 */
-#define PLA_FOR2C(name,NAME) name ## _
+#ifdef UpCase
+	#define PLA_FOR2C(name,NAME) NAME
+#else
+	/* Changed from "__" to "_" by Daniel Wirtz, 28-Jan-2015 */
+	#define PLA_FOR2C(name,NAME) name ## _
+#endif
 #endif
 
 #define NUM_OF_TYPES 6

@@ -87,6 +87,9 @@ if (MINGW)
     set(mingw-fix mingw-fix.c)
 endif()
 add_library(plapack ${template} ${api} ${blas1} ${blas2} ${blas3} ${lblas} ${copy} ${obj} ${reduce} ${util} ${io} ${pla} ${fortran} ${slv} ${mingw-fix})
+if (DEFINED FORTRAN_MANGLING)
+    target_compile_definitions(plapack PUBLIC $<BUILD_INTERFACE:${FORTRAN_MANGLING}>)
+endif()
 target_include_directories(plapack PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/INCLUDE> 
 )

@@ -29,7 +29,9 @@
    The only two options we have encountered are appending an underscore
    and doing nothing.
  */
-#if     MACHINE_TYPE == PARAGON || MANUFACTURE == SUN || MANUFACTURE == PC || MANUFACTURE == SGI
+#ifdef UpCase
+  #define PLA_FOR2C(name,NAME) NAME
+#elif MACHINE_TYPE == PARAGON || MANUFACTURE == SUN || MANUFACTURE == PC || MANUFACTURE == SGI
   #define PLA_FOR2C(name,NAME) name ## _
 #elif MANUFACTURE == CRAY || MACHINE_TYPE == SP2 || MANUFACTURE == IBM || MANUFACTURE == HP
   #define PLA_FOR2C(name,NAME) name

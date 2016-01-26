@@ -29,12 +29,13 @@
    The only two options we have encountered are appending an underscore
    and doing nothing.
  */
-#if     MACHINE_TYPE == PARAGON || MANUFACTURE == SUN || MANUFACTURE == PC || MANUFACTURE == SGI
-  #define PLA_FOR2C(name,NAME) name ## _
+#ifdef UpCase
+	#define PLA_FOR2C(name,NAME) NAME
+#elif MACHINE_TYPE == PARAGON || MANUFACTURE == SUN || MANUFACTURE == PC || MANUFACTURE == SGI
+	#define PLA_FOR2C(name,NAME) name ## _
 #elif MANUFACTURE == CRAY || MACHINE_TYPE == SP2 || MANUFACTURE == IBM || MANUFACTURE == HP
-  #define PLA_FOR2C(name,NAME) name
+	#define PLA_FOR2C(name,NAME) name
 #endif
-
 
 /* 
    The following definitions stem from the fact that on CRAY platforms 
