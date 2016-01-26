@@ -12,13 +12,13 @@
 
 #if MANUFACTURE == PC
 #undef PLA_FOR2C
-#define PLA_FOR2C( name ) name ## __ 
+#define PLA_FOR2C(name,NAME) name ## __ 
 #endif
 
 #if MANUFACTURE == CRAY
 int SEED_RANDOM( int *seed )
 #else
-int PLA_FOR2C( seed_random ) ( int *seed )
+int PLA_FOR2C(seed_random,SEED_RANDOM) ( int *seed )
 #endif
 {
   srand48( *seed );
@@ -27,7 +27,7 @@ int PLA_FOR2C( seed_random ) ( int *seed )
 #if MANUFACTURE == CRAY
 int COMPLEX_RANDOM( double *x )
 #else
-int PLA_FOR2C( complex_random )( double *x )
+int PLA_FOR2C(complex_random,COMPLEX_RANDOM)( double *x )
 #endif
 {
   double drand48();
@@ -39,7 +39,7 @@ int PLA_FOR2C( complex_random )( double *x )
 #if MANUFACTURE == CRAY
 int REAL_RANDOM( double *x )
 #else
-int PLA_FOR2C( real_random ) ( double *x )
+int PLA_FOR2C(real_random,REAL_RANDOM) ( double *x )
 #endif
 {
   double drand48();

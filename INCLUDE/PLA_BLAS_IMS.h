@@ -30,9 +30,9 @@
    and doing nothing.
  */
 #if     MACHINE_TYPE == PARAGON || MANUFACTURE == SUN || MANUFACTURE == PC || MANUFACTURE == SGI
-  #define PLA_FOR2C( name ) name ## _
+  #define PLA_FOR2C(name,NAME) name ## _
 #elif MANUFACTURE == CRAY || MACHINE_TYPE == SP2 || MANUFACTURE == IBM || MANUFACTURE == HP
-  #define PLA_FOR2C( name ) name
+  #define PLA_FOR2C(name,NAME) name
 #endif
 
 
@@ -57,18 +57,18 @@
    * Single precision
    */
 
-  #define PLA_srotg( a, b, c, s )                         PLA_FOR2C ( srotg  ) ( a, b, c, s )
-  #define PLA_srot(   n,        x, incx, y, incy, c, s )  PLA_FOR2C ( srot   ) ( n,        x, incx, y, incy, c, s )
-  #define PLA_sswap(  n,        x, incx, y, incy )        PLA_FOR2C ( sswap  ) ( n,        x, incx, y, incy )
-  #define PLA_scopy(  n,        x, incx, y, incy )        PLA_FOR2C ( scopy  ) ( n,        x, incx, y, incy )
-  #define PLA_saxpy(  n, alpha, x, incx, y, incy )        PLA_FOR2C ( saxpy  ) ( n, alpha, x, incx, y, incy )
-  #define PLA_sscal(  n, alpha, x, incx)                  PLA_FOR2C ( sscal  ) ( n, alpha, x, incx)
-  #define PLA_sdot(   n,        x, incx, y, incy )        PLA_FOR2C ( sdot   ) ( n,        x, incx, y, incy )
-  #define PLA_snrm2(  n,        x, incx )                 PLA_FOR2C ( snrm2  ) ( n,        x, incx )
-  #define PLA_sasum(  n,        x, incx )                 PLA_FOR2C ( sasum  ) ( n,        x, incx )
-  #define PLA_isamax( n,        x, incx )                 PLA_FOR2C ( isamax ) ( n,        x, incx )
+  #define PLA_srotg( a, b, c, s )                         PLA_FOR2C(srotg,SROTG) ( a, b, c, s )
+  #define PLA_srot(   n,        x, incx, y, incy, c, s )  PLA_FOR2C(srot,SROT) ( n,        x, incx, y, incy, c, s )
+  #define PLA_sswap(  n,        x, incx, y, incy )        PLA_FOR2C(sswap,SSWAP) ( n,        x, incx, y, incy )
+  #define PLA_scopy(  n,        x, incx, y, incy )        PLA_FOR2C(scopy,SCOPY) ( n,        x, incx, y, incy )
+  #define PLA_saxpy(  n, alpha, x, incx, y, incy )        PLA_FOR2C(saxpy,SAXPY) ( n, alpha, x, incx, y, incy )
+  #define PLA_sscal(  n, alpha, x, incx)                  PLA_FOR2C(sscal,SSCAL) ( n, alpha, x, incx)
+  #define PLA_sdot(   n,        x, incx, y, incy )        PLA_FOR2C(sdot,SDOT) ( n,        x, incx, y, incy )
+  #define PLA_snrm2(  n,        x, incx )                 PLA_FOR2C(snrm2,SNRM2) ( n,        x, incx )
+  #define PLA_sasum(  n,        x, incx )                 PLA_FOR2C(sasum,SASUM) ( n,        x, incx )
+  #define PLA_isamax( n,        x, incx )                 PLA_FOR2C(isamax,ISAMAX) ( n,        x, incx )
 
-  #define PLA_slacpy( u, m, n, a, lda, b, ldb )           PLA_FOR2C ( slacpy ) ( u, m, n, a, lda, b, ldb)
+  #define PLA_slacpy( u, m, n, a, lda, b, ldb )           PLA_FOR2C(slacpy,SLACPY) ( u, m, n, a, lda, b, ldb)
 
   /* prototypes */
 
@@ -101,18 +101,18 @@
    * Double precision
    */
 
-  #define PLA_drotg( a, b, c, s )                         PLA_FOR2C ( drotg  ) ( a, b, c, s )
-  #define PLA_drot(   n,        x, incx, y, incy, c, s )  PLA_FOR2C ( drot   ) ( n,        x, incx, y, incy, c, s )
-  #define PLA_dswap(  n,        x, incx, y, incy )        PLA_FOR2C ( dswap  ) ( n,        x, incx, y, incy )
-  #define PLA_dcopy(  n,        x, incx, y, incy )        PLA_FOR2C ( dcopy  ) ( n,        x, incx, y, incy )
-  #define PLA_daxpy(  n, alpha, x, incx, y, incy )        PLA_FOR2C ( daxpy  ) ( n, alpha, x, incx, y, incy )
-  #define PLA_dscal(  n, alpha, x, incx)                  PLA_FOR2C ( dscal  ) ( n, alpha, x, incx)
-  #define PLA_ddot(   n,        x, incx, y, incy )        PLA_FOR2C ( ddot   ) ( n,        x, incx, y, incy )
-  #define PLA_dnrm2(  n,        x, incx )                 PLA_FOR2C ( dnrm2  ) ( n,        x, incx )
-  #define PLA_dasum(  n,        x, incx )                 PLA_FOR2C ( dasum  ) ( n,        x, incx )
-  #define PLA_idamax( n,        x, incx )                 PLA_FOR2C ( idamax ) ( n,        x, incx )
+  #define PLA_drotg( a, b, c, s )                         PLA_FOR2C(drotg,DROTG) ( a, b, c, s )
+  #define PLA_drot(   n,        x, incx, y, incy, c, s )  PLA_FOR2C(drot,DROT) ( n,        x, incx, y, incy, c, s )
+  #define PLA_dswap(  n,        x, incx, y, incy )        PLA_FOR2C(dswap,DSWAP) ( n,        x, incx, y, incy )
+  #define PLA_dcopy(  n,        x, incx, y, incy )        PLA_FOR2C(dcopy,DCOPY) ( n,        x, incx, y, incy )
+  #define PLA_daxpy(  n, alpha, x, incx, y, incy )        PLA_FOR2C(daxpy,DAXPY) ( n, alpha, x, incx, y, incy )
+  #define PLA_dscal(  n, alpha, x, incx)                  PLA_FOR2C(dscal,DSCAL) ( n, alpha, x, incx)
+  #define PLA_ddot(   n,        x, incx, y, incy )        PLA_FOR2C(ddot,DDOT) ( n,        x, incx, y, incy )
+  #define PLA_dnrm2(  n,        x, incx )                 PLA_FOR2C(dnrm2,DNRM2) ( n,        x, incx )
+  #define PLA_dasum(  n,        x, incx )                 PLA_FOR2C(dasum,DASUM) ( n,        x, incx )
+  #define PLA_idamax( n,        x, incx )                 PLA_FOR2C(idamax,IDAMAX) ( n,        x, incx )
  
-  #define PLA_dlacpy( u, m, n, a, lda, b, ldb )           PLA_FOR2C ( dlacpy ) ( u, m, n, a, lda, b, ldb)
+  #define PLA_dlacpy( u, m, n, a, lda, b, ldb )           PLA_FOR2C(dlacpy,DLACPY) ( u, m, n, a, lda, b, ldb)
 
   /* prototype */ 
 
@@ -143,18 +143,18 @@
   /*
    * Single precision complex
    */
-  #define PLA_cswap(  n,        x, incx, y, incy )        PLA_FOR2C ( cswap  ) ( n,        x, incx, y, incy )
-  #define PLA_ccopy(  n,        x, incx, y, incy )        PLA_FOR2C ( ccopy  ) ( n,        x, incx, y, incy )
-  #define PLA_caxpy(  n, alpha, x, incx, y, incy )        PLA_FOR2C ( caxpy  ) ( n, alpha, x, incx, y, incy )
-  #define PLA_cscal(  n, alpha, x, incx)                  PLA_FOR2C ( cscal  ) ( n, alpha, x, incx)
-  #define PLA_cdot(   n,        x, incx, y, incy )        PLA_FOR2C ( cdot   ) ( n,        x, incx, y, incy )
-  #define PLA_cdotu(  n,        x, incx, y, incy )        PLA_FOR2C ( cdotu  ) ( n,        x, incx, y, incy )
-  #define PLA_cdotc(  n,        x, incx, y, incy )        PLA_FOR2C ( cdotc  ) ( n,        x, incx, y, incy )
-  #define PLA_scnrm2(  n,        x, incx )                 PLA_FOR2C ( scnrm2  ) ( n,        x, incx )
-  #define PLA_scasum(  n,        x, incx )                 PLA_FOR2C ( scasum  ) ( n,        x, incx )
-  #define PLA_icamax( n,        x, incx )                 PLA_FOR2C ( icamax ) ( n,        x, incx )
+  #define PLA_cswap(  n,        x, incx, y, incy )        PLA_FOR2C(cswap,CSWAP) ( n,        x, incx, y, incy )
+  #define PLA_ccopy(  n,        x, incx, y, incy )        PLA_FOR2C(ccopy,CCOPY) ( n,        x, incx, y, incy )
+  #define PLA_caxpy(  n, alpha, x, incx, y, incy )        PLA_FOR2C(caxpy,CAXPY) ( n, alpha, x, incx, y, incy )
+  #define PLA_cscal(  n, alpha, x, incx)                  PLA_FOR2C(cscal,CSCAL) ( n, alpha, x, incx)
+  #define PLA_cdot(   n,        x, incx, y, incy )        PLA_FOR2C(cdot,CDOT) ( n,        x, incx, y, incy )
+  #define PLA_cdotu(  n,        x, incx, y, incy )        PLA_FOR2C(cdotu,CDOTU) ( n,        x, incx, y, incy )
+  #define PLA_cdotc(  n,        x, incx, y, incy )        PLA_FOR2C(cdotc,CDOTC) ( n,        x, incx, y, incy )
+  #define PLA_scnrm2(  n,        x, incx )                 PLA_FOR2C(scnrm2,SCNRM2) ( n,        x, incx )
+  #define PLA_scasum(  n,        x, incx )                 PLA_FOR2C(scasum,SCASUM) ( n,        x, incx )
+  #define PLA_icamax( n,        x, incx )                 PLA_FOR2C(icamax,ICAMAX) ( n,        x, incx )
 
-  #define PLA_clacpy( u, m, n, a, lda, b, ldb )           PLA_FOR2C ( clacpy ) ( u, m, n, a, lda, b, ldb)
+  #define PLA_clacpy( u, m, n, a, lda, b, ldb )           PLA_FOR2C(clacpy,CLACPY) ( u, m, n, a, lda, b, ldb)
 
   /* prototypes */
 
@@ -185,18 +185,18 @@
   /*
    * Double precision complex
    */
-  #define PLA_zswap(  n,        x, incx, y, incy )        PLA_FOR2C ( zswap  ) ( n,        x, incx, y, incy )
-  #define PLA_zcopy(  n,        x, incx, y, incy )        PLA_FOR2C ( zcopy  ) ( n,        x, incx, y, incy )
-  #define PLA_zaxpy(  n, alpha, x, incx, y, incy )        PLA_FOR2C ( zaxpy  ) ( n, alpha, x, incx, y, incy )
-  #define PLA_zscal(  n, alpha, x, incx)                  PLA_FOR2C ( zscal  ) ( n, alpha, x, incx)
-  #define PLA_zdot(   n,        x, incx, y, incy )        PLA_FOR2C ( zdot   ) ( n,        x, incx, y, incy )
-  #define PLA_zdotu(  n,        x, incx, y, incy )        PLA_FOR2C ( zdotu  ) ( n,        x, incx, y, incy )
-  #define PLA_zdotc(  n,        x, incx, y, incy )        PLA_FOR2C ( zdotc  ) ( n,        x, incx, y, incy )
-  #define PLA_dznrm2(  n,        x, incx )                 PLA_FOR2C ( dznrm2  ) ( n,        x, incx )
-  #define PLA_dzasum(  n,        x, incx )                 PLA_FOR2C ( dzasum  ) ( n,        x, incx )
-  #define PLA_izamax( n,        x, incx )                 PLA_FOR2C ( izamax ) ( n,        x, incx )
+  #define PLA_zswap(  n,        x, incx, y, incy )        PLA_FOR2C(zswap,ZSWAP) ( n,        x, incx, y, incy )
+  #define PLA_zcopy(  n,        x, incx, y, incy )        PLA_FOR2C(zcopy,ZCOPY) ( n,        x, incx, y, incy )
+  #define PLA_zaxpy(  n, alpha, x, incx, y, incy )        PLA_FOR2C(zaxpy,ZAXPY) ( n, alpha, x, incx, y, incy )
+  #define PLA_zscal(  n, alpha, x, incx)                  PLA_FOR2C(zscal,ZSCAL) ( n, alpha, x, incx)
+  #define PLA_zdot(   n,        x, incx, y, incy )        PLA_FOR2C(zdot,ZDOT) ( n,        x, incx, y, incy )
+  #define PLA_zdotu(  n,        x, incx, y, incy )        PLA_FOR2C(zdotu,ZDOTU) ( n,        x, incx, y, incy )
+  #define PLA_zdotc(  n,        x, incx, y, incy )        PLA_FOR2C(zdotc,ZDOTC) ( n,        x, incx, y, incy )
+  #define PLA_dznrm2(  n,        x, incx )                 PLA_FOR2C(dznrm2,DZNRM2) ( n,        x, incx )
+  #define PLA_dzasum(  n,        x, incx )                 PLA_FOR2C(dzasum,DZASUM) ( n,        x, incx )
+  #define PLA_izamax( n,        x, incx )                 PLA_FOR2C(izamax,IZAMAX) ( n,        x, incx )
 
-  #define PLA_zlacpy( u, m, n, a, lda, b, ldb )           PLA_FOR2C ( zlacpy ) ( u, m, n, a, lda, b, ldb)
+  #define PLA_zlacpy( u, m, n, a, lda, b, ldb )           PLA_FOR2C(zlacpy,ZLACPY) ( u, m, n, a, lda, b, ldb)
 
   /* prototypes */
 
@@ -332,20 +332,20 @@
    */
 
   #define            PLA_sgemv(           trans,       m, n, alpha, a, lda, x, incx, beta, y, incy ) \
-          PLA_FOR2C (    sgemv  ) (       trans,       m, n, alpha, a, lda, x, incx, beta, y, incy, 1 )
+          PLA_FOR2C(sgemv,SGEMV) (       trans,       m, n, alpha, a, lda, x, incx, beta, y, incy, 1 )
   #define            PLA_ssymv(     uplo,                 n, alpha, a, lda, x, incx, beta, y, incy ) \
-          PLA_FOR2C (    ssymv  ) ( uplo,                 n, alpha, a, lda, x, incx, beta, y, incy, 1 )
+          PLA_FOR2C(ssymv,SSYMV) ( uplo,                 n, alpha, a, lda, x, incx, beta, y, incy, 1 )
   #define            PLA_strmv(     uplo, trans, diag,    n,        a, lda, x, incx ) \
-          PLA_FOR2C(     strmv  ) ( uplo, trans, diag,    n,        a, lda, x, incx, 1, 1, 1 )
+          PLA_FOR2C(strmv,STRMV) ( uplo, trans, diag,    n,        a, lda, x, incx, 1, 1, 1 )
   #define            PLA_strsv(     uplo, trans, diag,    n,        a, lda, x, incx ) \
-          PLA_FOR2C(     strsv  ) ( uplo, trans, diag,    n,        a, lda, x, incx, 1, 1, 1 )
+          PLA_FOR2C(strsv,STRSV) ( uplo, trans, diag,    n,        a, lda, x, incx, 1, 1, 1 )
 
   #define           PLA_sger(            m, n, alpha, x, incx, y, incy, a, lda ) \
-          PLA_FOR2C(    sger ) (         m, n, alpha, x, incx, y, incy, a, lda )
+          PLA_FOR2C(sger,SGER) (         m, n, alpha, x, incx, y, incy, a, lda )
   #define           PLA_ssyr(      uplo,    n, alpha, x, incx,          a, lda ) \
-          PLA_FOR2C(    ssyr   ) ( uplo,    n, alpha, x, incx,          a, lda, 1 )
+          PLA_FOR2C(ssyr,SSYR) ( uplo,    n, alpha, x, incx,          a, lda, 1 )
   #define           PLA_ssyr2(     uplo,    n, alpha, x, incx, y, incy, a, lda ) \
-          PLA_FOR2C(    ssyr2  ) ( uplo,    n, alpha, x, incx, y, incy, a, lda, 1 )
+          PLA_FOR2C(ssyr2,SSYR2) ( uplo,    n, alpha, x, incx, y, incy, a, lda, 1 )
 
 
   /*
@@ -353,63 +353,63 @@
    */
 
   #define            PLA_dgemv(           trans,       m, n, alpha, a, lda, x, incx, beta, y, incy ) \
-          PLA_FOR2C (    dgemv  ) (       trans,       m, n, alpha, a, lda, x, incx, beta, y, incy, 1 )
+          PLA_FOR2C(dgemv,DGEMV) (       trans,       m, n, alpha, a, lda, x, incx, beta, y, incy, 1 )
   #define            PLA_dsymv(     uplo,                 n, alpha, a, lda, x, incx, beta, y, incy ) \
-          PLA_FOR2C (    dsymv  ) ( uplo,                 n, alpha, a, lda, x, incx, beta, y, incy, 1 )
+          PLA_FOR2C(dsymv,DSYMV) ( uplo,                 n, alpha, a, lda, x, incx, beta, y, incy, 1 )
   #define            PLA_dtrmv(     uplo, trans, diag,    n,        a, lda, x, incx ) \
-          PLA_FOR2C(     dtrmv  ) ( uplo, trans, diag,    n,        a, lda, x, incx, 1, 1, 1 )
+          PLA_FOR2C(dtrmv,DTRMV) ( uplo, trans, diag,    n,        a, lda, x, incx, 1, 1, 1 )
   #define            PLA_dtrsv(     uplo, trans, diag,    n,        a, lda, x, incx ) \
-          PLA_FOR2C(     dtrsv  ) ( uplo, trans, diag,    n,        a, lda, x, incx, 1, 1, 1 )
+          PLA_FOR2C(dtrsv,DTRSV) ( uplo, trans, diag,    n,        a, lda, x, incx, 1, 1, 1 )
 
   #define           PLA_dger(            m, n, alpha, x, incx, y, incy, a, lda ) \
-          PLA_FOR2C(    dger ) (         m, n, alpha, x, incx, y, incy, a, lda )
+          PLA_FOR2C(dger,DGER) (         m, n, alpha, x, incx, y, incy, a, lda )
   #define           PLA_dsyr(      uplo,    n, alpha, x, incx,          a, lda ) \
-          PLA_FOR2C(    dsyr   ) ( uplo,    n, alpha, x, incx,          a, lda, 1 )
+          PLA_FOR2C(dsyr,DSYR) ( uplo,    n, alpha, x, incx,          a, lda, 1 )
   #define           PLA_dsyr2(     uplo,    n, alpha, x, incx, y, incy, a, lda ) \
-          PLA_FOR2C(    dsyr2  ) ( uplo,    n, alpha, x, incx, y, incy, a, lda, 1 )
+          PLA_FOR2C(dsyr2,DSYR2) ( uplo,    n, alpha, x, incx, y, incy, a, lda, 1 )
 
   /*
    * Single precision complex
    */
 
   #define            PLA_cgemv(           trans,       m, n, alpha, a, lda, x, incx, beta, y, incy ) \
-          PLA_FOR2C (    cgemv  ) (       trans,       m, n, alpha, a, lda, x, incx, beta, y, incy, 1 )
+          PLA_FOR2C(cgemv,CGEMV) (       trans,       m, n, alpha, a, lda, x, incx, beta, y, incy, 1 )
   #define            PLA_csymv(     uplo,                 n, alpha, a, lda, x, incx, beta, y, incy ) \
-          PLA_FOR2C (    csymv  ) ( uplo,                 n, alpha, a, lda, x, incx, beta, y, incy, 1 )
+          PLA_FOR2C(csymv,CSYMV) ( uplo,                 n, alpha, a, lda, x, incx, beta, y, incy, 1 )
   #define            PLA_chemv(     uplo,                 n, alpha, a, lda, x, incx, beta, y, incy ) \
-          PLA_FOR2C (    chemv  ) ( uplo,                 n, alpha, a, lda, x, incx, beta, y, incy, 1 )
+          PLA_FOR2C(chemv,CHEMV) ( uplo,                 n, alpha, a, lda, x, incx, beta, y, incy, 1 )
   #define            PLA_ctrmv(     uplo, trans, diag,    n,        a, lda, x, incx ) \
-          PLA_FOR2C(     ctrmv  ) ( uplo, trans, diag,    n,        a, lda, x, incx, 1, 1, 1 )
+          PLA_FOR2C(ctrmv,CTRMV) ( uplo, trans, diag,    n,        a, lda, x, incx, 1, 1, 1 )
   #define            PLA_ctrsv(     uplo, trans, diag,    n,        a, lda, x, incx ) \
-          PLA_FOR2C(     ctrsv  ) ( uplo, trans, diag,    n,        a, lda, x, incx, 1, 1, 1 )
+          PLA_FOR2C(ctrsv,CTRSV) ( uplo, trans, diag,    n,        a, lda, x, incx, 1, 1, 1 )
 
   #define           PLA_cger(            m, n, alpha, x, incx, y, incy, a, lda ) \
-          PLA_FOR2C(    cgeru ) (         m, n, alpha, x, incx, y, incy, a, lda )
+          PLA_FOR2C(cgeru,CGERU) (         m, n, alpha, x, incx, y, incy, a, lda )
   #define           PLA_cher(      uplo,    n, alpha, x, incx,          a, lda ) \
-          PLA_FOR2C(    cher   ) ( uplo,    n, alpha, x, incx,          a, lda, 1 )
+          PLA_FOR2C(cher,CHER) ( uplo,    n, alpha, x, incx,          a, lda, 1 )
   #define           PLA_cher2(     uplo,    n, alpha, x, incx, y, incy, a, lda ) \
-          PLA_FOR2C(    cher2  ) ( uplo,    n, alpha, x, incx, y, incy, a, lda, 1 )
+          PLA_FOR2C(cher2,CHER2) ( uplo,    n, alpha, x, incx, y, incy, a, lda, 1 )
 
   /*
    * Double precision complex
    */
   #define            PLA_zgemv(           trans,       m, n, alpha, a, lda, x, incx, beta, y, incy ) \
-          PLA_FOR2C (    zgemv  ) (       trans,       m, n, alpha, a, lda, x, incx, beta, y, incy, 1 )
+          PLA_FOR2C(zgemv,ZGEMV) (       trans,       m, n, alpha, a, lda, x, incx, beta, y, incy, 1 )
   #define            PLA_zsymv(     uplo,                 n, alpha, a, lda, x, incx, beta, y, incy ) \
-          PLA_FOR2C (    zsymv  ) ( uplo,                 n, alpha, a, lda, x, incx, beta, y, incy, 1 )
+          PLA_FOR2C(zsymv,ZSYMV) ( uplo,                 n, alpha, a, lda, x, incx, beta, y, incy, 1 )
   #define            PLA_zhemv(     uplo,                 n, alpha, a, lda, x, incx, beta, y, incy ) \
-          PLA_FOR2C (    zhemv  ) ( uplo,                 n, alpha, a, lda, x, incx, beta, y, incy, 1 )
+          PLA_FOR2C(zhemv,ZHEMV) ( uplo,                 n, alpha, a, lda, x, incx, beta, y, incy, 1 )
   #define            PLA_ztrmv(     uplo, trans, diag,    n,        a, lda, x, incx ) \
-          PLA_FOR2C(     ztrmv  ) ( uplo, trans, diag,    n,        a, lda, x, incx, 1, 1, 1 )
+          PLA_FOR2C(ztrmv,ZTRMV) ( uplo, trans, diag,    n,        a, lda, x, incx, 1, 1, 1 )
   #define            PLA_ztrsv(     uplo, trans, diag,    n,        a, lda, x, incx ) \
-          PLA_FOR2C(     ztrsv  ) ( uplo, trans, diag,    n,        a, lda, x, incx, 1, 1, 1 )
+          PLA_FOR2C(ztrsv,ZTRSV) ( uplo, trans, diag,    n,        a, lda, x, incx, 1, 1, 1 )
 
   #define           PLA_zger(            m, n, alpha, x, incx, y, incy, a, lda ) \
-          PLA_FOR2C(    zgeru ) (         m, n, alpha, x, incx, y, incy, a, lda )
+          PLA_FOR2C(zgeru,ZGERU) (         m, n, alpha, x, incx, y, incy, a, lda )
   #define           PLA_zher(      uplo,    n, alpha, x, incx,          a, lda ) \
-          PLA_FOR2C(    zher   ) ( uplo,    n, alpha, x, incx,          a, lda, 1 )
+          PLA_FOR2C(zher,ZHER) ( uplo,    n, alpha, x, incx,          a, lda, 1 )
   #define           PLA_zher2(     uplo,    n, alpha, x, incx, y, incy, a, lda ) \
-          PLA_FOR2C(    zher2  ) ( uplo,    n, alpha, x, incx, y, incy, a, lda, 1 )
+          PLA_FOR2C(zher2,ZHER2) ( uplo,    n, alpha, x, incx, y, incy, a, lda, 1 )
  
 
 #else /*  MANUFACTURE == CRAY */
@@ -562,79 +562,79 @@
    */
 
   #define           PLA_sgemm( transa, transb,  m, n, k, alpha, a, lda, b, ldb, beta, c, ldc )  \
-          PLA_FOR2C(    sgemm  ) (   transa, transb,       m, n, k, alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
+          PLA_FOR2C(sgemm,SGEMM) (   transa, transb,       m, n, k, alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
   #define           PLA_ssymm(     side, uplo,                       m, n,    alpha, a, lda, b, ldb, beta, c, ldc )  \
-          PLA_FOR2C(    ssymm  ) ( side, uplo,                       m, n,    alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
+          PLA_FOR2C(ssymm,SSYMM) ( side, uplo,                       m, n,    alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
   #define           PLA_ssyrk(           uplo, trans,                   n, k, alpha, a, lda,         beta, c, ldc )  \
-          PLA_FOR2C(    ssyrk  ) (       uplo, trans,                   n, k, alpha, a, lda,         beta, c, ldc, 1, 1 )
+          PLA_FOR2C(ssyrk,SSYRK) (       uplo, trans,                   n, k, alpha, a, lda,         beta, c, ldc, 1, 1 )
   #define           PLA_ssyr2k(          uplo, trans,                   n, k, alpha, a, lda, b, ldb, beta, c, ldc )  \
-          PLA_FOR2C(    ssyr2k ) (       uplo, trans,                   n, k, alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
+          PLA_FOR2C(ssyr2k,SSYR2K) (       uplo, trans,                   n, k, alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
   #define           PLA_strmm(     side, uplo, transa,         diag, m, n,    alpha, a, lda, b, ldb               )  \
-          PLA_FOR2C(    strmm  ) ( side, uplo, transa,         diag, m, n,    alpha, a, lda, b, ldb, 1, 1, 1, 1               )
+          PLA_FOR2C(strmm,STRMM) ( side, uplo, transa,         diag, m, n,    alpha, a, lda, b, ldb, 1, 1, 1, 1               )
   #define           PLA_strsm(     side, uplo, transa,         diag, m, n,    alpha, a, lda, b, ldb               )  \
-          PLA_FOR2C(    strsm  ) ( side, uplo, transa,         diag, m, n,    alpha, a, lda, b, ldb, 1, 1, 1, 1               )
+          PLA_FOR2C(strsm,STRSM) ( side, uplo, transa,         diag, m, n,    alpha, a, lda, b, ldb, 1, 1, 1, 1               )
 
   /*
    * Double precision
    */
 
   #define           PLA_dgemm(                 transa, transb,       m, n, k, alpha, a, lda, b, ldb, beta, c, ldc )  \
-          PLA_FOR2C(    dgemm  ) (             transa, transb,       m, n, k, alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
+          PLA_FOR2C(dgemm,DGEMM) (             transa, transb,       m, n, k, alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
   #define           PLA_dsymm(     side, uplo,                       m, n,    alpha, a, lda, b, ldb, beta, c, ldc )  \
-          PLA_FOR2C(    dsymm  ) ( side, uplo,                       m, n,    alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
+          PLA_FOR2C(dsymm,DSYMM) ( side, uplo,                       m, n,    alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
   #define           PLA_dsyrk(           uplo, trans,                   n, k, alpha, a, lda,         beta, c, ldc )  \
-          PLA_FOR2C(    dsyrk  ) (       uplo, trans,                   n, k, alpha, a, lda,         beta, c, ldc, 1, 1 )
+          PLA_FOR2C(dsyrk,DSYRK) (       uplo, trans,                   n, k, alpha, a, lda,         beta, c, ldc, 1, 1 )
   #define           PLA_dsyr2k(          uplo, trans,                   n, k, alpha, a, lda, b, ldb, beta, c, ldc )  \
-          PLA_FOR2C(    dsyr2k ) (       uplo, trans,                   n, k, alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
+          PLA_FOR2C(dsyr2k,DSYR2K) (       uplo, trans,                   n, k, alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
   #define           PLA_dtrmm(     side, uplo, transa,         diag, m, n,    alpha, a, lda, b, ldb               )  \
-          PLA_FOR2C(    dtrmm  ) ( side, uplo, transa,         diag, m, n,    alpha, a, lda, b, ldb, 1, 1, 1, 1               )
+          PLA_FOR2C(dtrmm,DTRMM) ( side, uplo, transa,         diag, m, n,    alpha, a, lda, b, ldb, 1, 1, 1, 1               )
   #define           PLA_dtrsm(     side, uplo, transa,         diag, m, n,    alpha, a, lda, b, ldb               )  \
-          PLA_FOR2C(    dtrsm  ) ( side, uplo, transa,         diag, m, n,    alpha, a, lda, b, ldb, 1, 1, 1, 1               )
+          PLA_FOR2C(dtrsm,DTRSM) ( side, uplo, transa,         diag, m, n,    alpha, a, lda, b, ldb, 1, 1, 1, 1               )
 
   /*
    * Single precision complex
    */
 
   #define           PLA_cgemm(                 transa, transb,       m, n, k, alpha, a, lda, b, ldb, beta, c, ldc )  \
-          PLA_FOR2C(    cgemm  ) (             transa, transb,       m, n, k, alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
+          PLA_FOR2C(cgemm,CGEMM) (             transa, transb,       m, n, k, alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
   #define           PLA_csymm(     side, uplo,                       m, n,    alpha, a, lda, b, ldb, beta, c, ldc )  \
-          PLA_FOR2C(    csymm  ) ( side, uplo,                       m, n,    alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
+          PLA_FOR2C(csymm,CSYMM) ( side, uplo,                       m, n,    alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
   #define           PLA_chemm(     side, uplo,                       m, n,    alpha, a, lda, b, ldb, beta, c, ldc )  \
-          PLA_FOR2C(    chemm  ) ( side, uplo,                       m, n,    alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
+          PLA_FOR2C(chemm,CHEMM) ( side, uplo,                       m, n,    alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
   #define           PLA_csyrk(           uplo, trans,                   n, k, alpha, a, lda,         beta, c, ldc )  \
-          PLA_FOR2C(    csyrk  ) (       uplo, trans,                   n, k, alpha, a, lda,         beta, c, ldc, 1, 1 )
+          PLA_FOR2C(csyrk,CSYRK) (       uplo, trans,                   n, k, alpha, a, lda,         beta, c, ldc, 1, 1 )
   #define           PLA_cherk(           uplo, trans,                   n, k, alpha, a, lda,         beta, c, ldc )  \
-          PLA_FOR2C(    cherk  ) (       uplo, trans,                   n, k, alpha, a, lda,         beta, c, ldc, 1, 1 )
+          PLA_FOR2C(cherk,CHERK) (       uplo, trans,                   n, k, alpha, a, lda,         beta, c, ldc, 1, 1 )
   #define           PLA_csyr2k(          uplo, trans,                   n, k, alpha, a, lda, b, ldb, beta, c, ldc )  \
-          PLA_FOR2C(    csyr2k ) (       uplo, trans,                   n, k, alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
+          PLA_FOR2C(csyr2k,CSYR2K) (       uplo, trans,                   n, k, alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
   #define           PLA_cher2k(          uplo, trans,                   n, k, alpha, a, lda, b, ldb, beta, c, ldc )  \
-          PLA_FOR2C(    cher2k ) (       uplo, trans,                   n, k, alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
+          PLA_FOR2C(cher2k,CHER2K) (       uplo, trans,                   n, k, alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
   #define           PLA_ctrmm(     side, uplo, transa,         diag, m, n,    alpha, a, lda, b, ldb               )  \
-          PLA_FOR2C(    ctrmm  ) ( side, uplo, transa,         diag, m, n,    alpha, a, lda, b, ldb, 1, 1, 1, 1               )
+          PLA_FOR2C(ctrmm,CTRMM) ( side, uplo, transa,         diag, m, n,    alpha, a, lda, b, ldb, 1, 1, 1, 1               )
   #define           PLA_ctrsm(     side, uplo, transa,         diag, m, n,    alpha, a, lda, b, ldb               )  \
-          PLA_FOR2C(    ctrsm  ) ( side, uplo, transa,         diag, m, n,    alpha, a, lda, b, ldb, 1, 1, 1, 1               )
+          PLA_FOR2C(ctrsm,CTRSM) ( side, uplo, transa,         diag, m, n,    alpha, a, lda, b, ldb, 1, 1, 1, 1               )
 
   /*
    * Double precision complex
    */
   #define           PLA_zgemm(                 transa, transb,       m, n, k, alpha, a, lda, b, ldb, beta, c, ldc )  \
-          PLA_FOR2C(    zgemm  ) (             transa, transb,       m, n, k, alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
+          PLA_FOR2C(zgemm,ZGEMM) (             transa, transb,       m, n, k, alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
   #define           PLA_zsymm(     side, uplo,                       m, n,    alpha, a, lda, b, ldb, beta, c, ldc )  \
-          PLA_FOR2C(    zsymm  ) ( side, uplo,                       m, n,    alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
+          PLA_FOR2C(zsymm,ZSYMM) ( side, uplo,                       m, n,    alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
   #define           PLA_zhemm(     side, uplo,                       m, n,    alpha, a, lda, b, ldb, beta, c, ldc )  \
-          PLA_FOR2C(    zhemm  ) ( side, uplo,                       m, n,    alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
+          PLA_FOR2C(zhemm,ZHEMM) ( side, uplo,                       m, n,    alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
   #define           PLA_zsyrk(           uplo, trans,                   n, k, alpha, a, lda,         beta, c, ldc )  \
-          PLA_FOR2C(    zsyrk  ) (       uplo, trans,                   n, k, alpha, a, lda,         beta, c, ldc, 1, 1 )
+          PLA_FOR2C(zsyrk,ZSYRK) (       uplo, trans,                   n, k, alpha, a, lda,         beta, c, ldc, 1, 1 )
   #define           PLA_zherk(           uplo, trans,                   n, k, alpha, a, lda,         beta, c, ldc )  \
-          PLA_FOR2C(    zherk  ) (       uplo, trans,                   n, k, alpha, a, lda,         beta, c, ldc, 1, 1 )
+          PLA_FOR2C(zherk,ZHERK) (       uplo, trans,                   n, k, alpha, a, lda,         beta, c, ldc, 1, 1 )
   #define           PLA_zsyr2k(          uplo, trans,                   n, k, alpha, a, lda, b, ldb, beta, c, ldc )  \
-          PLA_FOR2C(    zsyr2k ) (       uplo, trans,                   n, k, alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
+          PLA_FOR2C(zsyr2k,ZSYR2K) (       uplo, trans,                   n, k, alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
   #define           PLA_zher2k(          uplo, trans,                   n, k, alpha, a, lda, b, ldb, beta, c, ldc )  \
-          PLA_FOR2C(    zher2k ) (       uplo, trans,                   n, k, alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
+          PLA_FOR2C(zher2k,ZHER2K) (       uplo, trans,                   n, k, alpha, a, lda, b, ldb, beta, c, ldc, 1, 1 )
   #define           PLA_ztrmm(     side, uplo, transa,         diag, m, n,    alpha, a, lda, b, ldb               )  \
-          PLA_FOR2C(    ztrmm  ) ( side, uplo, transa,         diag, m, n,    alpha, a, lda, b, ldb, 1, 1, 1, 1               )
+          PLA_FOR2C(ztrmm,ZTRMM) ( side, uplo, transa,         diag, m, n,    alpha, a, lda, b, ldb, 1, 1, 1, 1               )
   #define           PLA_ztrsm(     side, uplo, transa,         diag, m, n,    alpha, a, lda, b, ldb               )  \
-          PLA_FOR2C(    ztrsm  ) ( side, uplo, transa,         diag, m, n,    alpha, a, lda, b, ldb, 1, 1, 1, 1               )
+          PLA_FOR2C(ztrsm,ZTRSM) ( side, uplo, transa,         diag, m, n,    alpha, a, lda, b, ldb, 1, 1, 1, 1               )
 
 #else /* MANUFACTURE == CRAY */
 
@@ -812,7 +812,7 @@
 
 #if MANUFACTURE != CRAY
 #define PLA_dsteqr( compz, n, d, e, z, ldz, work, info ) \
-          PLA_FOR2C( dsteqr  ) ( compz, n, d, e, z, ldz, work, info, 1 )
+          PLA_FOR2C(dsteqr,DSTEQR) ( compz, n, d, e, z, ldz, work, info, 1 )
 #else
 #define PLA_dsteqr( compz, n, d, e, z, ldz, work, info ) \
           SSTEQR  ( PLA_CP2FCD ( compz ), n, d, e, z, ldz, work, info )
@@ -821,41 +821,41 @@
 #if MANUFACTURE != CRAY
 #if MANUFACTURE != PC
 #define PLA_dsteqr_x( compz, m, n, d, e, z, ldz, work, info ) \
-          PLA_FOR2C( dsteqr_x )( compz, m, n, d, e, z, ldz, work, info, 1 )
+          PLA_FOR2C(dsteqr_x,DSTEQR_X)( compz, m, n, d, e, z, ldz, work, info, 1 )
 
 /* LAPACK Cholesky factorization */
 #define PLA_spotrf( uplo, n, a, lda, info ) \
-          PLA_FOR2C(    spotrf  ) (   uplo, n, a, lda, info, 1 )
+          PLA_FOR2C(spotrf,SPOTRF) (   uplo, n, a, lda, info, 1 )
 
 #define PLA_dpotrf( uplo, n, a, lda, info ) \
-          PLA_FOR2C(    dpotrf  ) (   uplo, n, a, lda, info, 1 )
+          PLA_FOR2C(dpotrf,DPOTRF) (   uplo, n, a, lda, info, 1 )
 
 #define PLA_cpotrf( uplo, n, a, lda, info ) \
-          PLA_FOR2C(    cpotrf  ) (   uplo, n, a, lda, info, 1 )
+          PLA_FOR2C(cpotrf,CPOTRF) (   uplo, n, a, lda, info, 1 )
 
 #define PLA_zpotrf( uplo, n, a, lda, info ) \
-          PLA_FOR2C(    zpotrf  ) (   uplo, n, a, lda, info, 1 )
+          PLA_FOR2C(zpotrf,ZPOTRF) (   uplo, n, a, lda, info, 1 )
 #else
 #define PLA_dsteqr_x( compz, m, n, d, e, z, ldz, work, info ) \
-          PLA_FOR2C( dsteqr_x )( compz, m, n, d, e, z, ldz, work, info, 1 )
+          PLA_FOR2C(dsteqr_x,DSTEQR_X)( compz, m, n, d, e, z, ldz, work, info, 1 )
 
 #define PLA_dbdsqr_x( uplo, n, nv, nru, ncc, d, e, v, ldv, \
 		      u, ldu, c, ldc, work, info ) \
-          PLA_FOR2C( dbdsqr_x)( uplo, n, nv, nru, ncc, d, e, v, ldv, \
+          PLA_FOR2C(dbdsqr_x,DBDSQR_X)( uplo, n, nv, nru, ncc, d, e, v, ldv, \
 		      u, ldu, c, ldc, work, info, 1 ) 
 
 /* LAPACK Cholesky factorization */
 #define PLA_spotrf( uplo, n, a, lda, info ) \
-          PLA_FOR2C( spotrf_ )(   uplo, n, a, lda, info, 1 )
+          PLA_FOR2C(spotrf_,SPOTRF_)(   uplo, n, a, lda, info, 1 )
 
 #define PLA_dpotrf( uplo, n, a, lda, info ) \
-          PLA_FOR2C( dpotrf_ )(   uplo, n, a, lda, info, 1 )
+          PLA_FOR2C(dpotrf_,DPOTRF_)(   uplo, n, a, lda, info, 1 )
 
 #define PLA_cpotrf( uplo, n, a, lda, info ) \
-          PLA_FOR2C( cpotrf_ )(   uplo, n, a, lda, info, 1 )
+          PLA_FOR2C(cpotrf_,CPOTRF_)(   uplo, n, a, lda, info, 1 )
 
 #define PLA_zpotrf( uplo, n, a, lda, info ) \
-          PLA_FOR2C( zpotrf_ )(   uplo, n, a, lda, info, 1 )
+          PLA_FOR2C(zpotrf_,ZPOTRF_)(   uplo, n, a, lda, info, 1 )
 #endif
 #else
 #define PLA_dsteqr_x( compz, m, n, d, e, z, ldz, work, info ) \

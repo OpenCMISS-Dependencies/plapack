@@ -31,7 +31,7 @@
 
 #if MANUFACTURE == PC
 #undef PLA_FOR2C
-#define PLA_FOR2C( name ) name ## __ 
+#define PLA_FOR2C(name,NAME) name ## __ 
 #endif
 
 /*************************************************************
@@ -45,7 +45,7 @@
 #if MANUFACTURE == CRAY
 void PLA_INIT_F
 #else
-void PLA_FOR2C( pla_init_f )
+void PLA_FOR2C(pla_init_f,PLA_INIT_F)
 #endif
 ( MPI_Fint *comm, FINT *ierror )
 {
@@ -61,7 +61,7 @@ void PLA_FOR2C( pla_init_f )
 #if MANUFACTURE == CRAY
 void PLA_FINALIZE_F
 #else
-void PLA_FOR2C( pla_finalize_f )
+void PLA_FOR2C(pla_finalize_f,PLA_FINALIZE_F)
 #endif
 ( FINT *ierror )
 {
@@ -73,7 +73,7 @@ void PLA_FOR2C( pla_finalize_f )
 #if MANUFACTURE == CRAY
 void PLA_INITIALIZED_F
 #else
-void PLA_FOR2C( pla_initialized_f )
+void PLA_FOR2C(pla_initialized_f,PLA_INITIALIZED_F)
 #endif
 ( FINT *initialized, FINT *ierror )
 {
@@ -85,7 +85,7 @@ void PLA_FOR2C( pla_initialized_f )
 #if MANUFACTURE == CRAY
 void PLA_BASECOMM_F
 #else
-void PLA_FOR2C( pla_basecomm_f )
+void PLA_FOR2C(pla_basecomm_f,PLA_BASECOMM_F)
 #endif
 ( MPI_Fint *comm, FINT *ierror )
 {
@@ -106,7 +106,7 @@ void PLA_FOR2C( pla_basecomm_f )
 #if MANUFACTURE == CRAY
 void PLA_COMM1DTO2D_F
 #else
-void PLA_FOR2C( pla_comm1dto2d_f )
+void PLA_FOR2C(pla_comm1dto2d_f,PLA_COMM1DTO2D_F)
 #endif
 ( MPI_Fint *comm_in,  FINT *nprows, FINT *npcols, 
 			   MPI_Fint *comm_out, FINT *ierror )
@@ -130,7 +130,7 @@ void PLA_FOR2C( pla_comm1dto2d_f )
 #if MANUFACTURE == CRAY
 void PLA_COMM1DTO2DRATIO_F
 #else
-void PLA_FOR2C( pla_comm1dto2dratio_f )
+void PLA_FOR2C(pla_comm1dto2dratio_f,PLA_COMM1DTO2DRATIO_F)
 #endif
        ( MPI_Fint *comm_in, double *ratio, MPI_Fint *comm_out, FINT *ierror )
 {
@@ -158,7 +158,7 @@ void PLA_FOR2C( pla_comm1dto2dratio_f )
 #if MANUFACTURE == CRAY
 void PLA_TEMPCREATE_F
 #else
-void PLA_FOR2C( pla_tempcreate_f )
+void PLA_FOR2C(pla_tempcreate_f,PLA_TEMPCREATE_F)
 #endif
 ( FINT *nb_distr, FINT *zero_or_one, 
 			FINT *templ,    FINT *ierror )
@@ -173,7 +173,7 @@ void PLA_FOR2C( pla_tempcreate_f )
 #if MANUFACTURE == CRAY
 void PLA_TEMPFREE_F
 #else
-void PLA_FOR2C( pla_tempfree_f )
+void PLA_FOR2C(pla_tempfree_f,PLA_TEMPFREE_F)
 #endif
 ( FINT *templ, FINT *ierror )
 {
@@ -185,7 +185,7 @@ void PLA_FOR2C( pla_tempfree_f )
 #if MANUFACTURE == CRAY
 void PLA_TEMPCOMMALLINFO_F
 #else
-void PLA_FOR2C( pla_tempcommallinfo_f )
+void PLA_FOR2C(pla_tempcommallinfo_f,PLA_TEMPCOMMALLINFO_F)
 #endif
 ( FINT *templ, 
 			       MPI_Fint *comm, 
@@ -216,7 +216,7 @@ void PLA_FOR2C( pla_tempcommallinfo_f )
 #if MANUFACTURE == CRAY
 void PLA_TEMPCOMMALL_F
 #else
-void PLA_FOR2C( pla_tempcommall_f )
+void PLA_FOR2C(pla_tempcommall_f,PLA_TEMPCOMMALL_F)
 #endif
 ( FINT *templ, MPI_Fint *comm, FINT *ierror )
 {
@@ -238,7 +238,7 @@ void PLA_FOR2C( pla_tempcommall_f )
 #if MANUFACTURE == CRAY
 void PLA_TEMPCOMMALLRANK_F
 #else
-void PLA_FOR2C( pla_tempcommallrank_f )
+void PLA_FOR2C(pla_tempcommallrank_f,PLA_TEMPCOMMALLRANK_F)
 #endif
 ( FINT *templ, FINT *rank, FINT *ierror )
 {
@@ -257,7 +257,7 @@ void PLA_FOR2C( pla_tempcommallrank_f )
 #if MANUFACTURE == CRAY
 void PLA_TEMPCOMMALLSIZE_F
 #else
-void PLA_FOR2C( pla_tempcommallsize_f )
+void PLA_FOR2C(pla_tempcommallsize_f,PLA_TEMPCOMMALLSIZE_F)
 #endif
 ( FINT *templ, FINT *numnodes, FINT *ierror )
 {
@@ -275,7 +275,7 @@ void PLA_FOR2C( pla_tempcommallsize_f )
 #if MANUFACTURE == CRAY
 void PLA_TEMPCOMMROWINFO_F
 #else
-void PLA_FOR2C( pla_tempcommrowinfo_f )
+void PLA_FOR2C(pla_tempcommrowinfo_f,PLA_TEMPCOMMROWINFO_F)
 #endif
 ( FINT *templ, MPI_Fint *comm, FINT *rank, 
 			       FINT *numnodes, FINT *ierror )
@@ -303,7 +303,7 @@ void PLA_FOR2C( pla_tempcommrowinfo_f )
 #if MANUFACTURE == CRAY
 void PLA_TEMPCOMMROW_F
 #else
-void PLA_FOR2C( pla_tempcommrow_f )
+void PLA_FOR2C(pla_tempcommrow_f,PLA_TEMPCOMMROW_F)
 #endif
 ( FINT *templ, MPI_Fint *comm, FINT *ierror )
 {
@@ -325,7 +325,7 @@ void PLA_FOR2C( pla_tempcommrow_f )
 #if MANUFACTURE == CRAY
 void PLA_TEMPCOMMROWRANK_F
 #else
-void PLA_FOR2C( pla_tempcommrowrank_f )
+void PLA_FOR2C(pla_tempcommrowrank_f,PLA_TEMPCOMMROWRANK_F)
 #endif
 ( FINT *templ, FINT *rank, FINT *ierror )
 {
@@ -343,7 +343,7 @@ void PLA_FOR2C( pla_tempcommrowrank_f )
 #if MANUFACTURE == CRAY
 void PLA_TEMPCOMMROWSIZE_F
 #else
-void PLA_FOR2C( pla_tempcommrowsize_f )
+void PLA_FOR2C(pla_tempcommrowsize_f,PLA_TEMPCOMMROWSIZE_F)
 #endif
 ( FINT *templ, FINT *numnodes, FINT *ierror )
 {
@@ -361,7 +361,7 @@ void PLA_FOR2C( pla_tempcommrowsize_f )
 #if MANUFACTURE == CRAY
 void PLA_TEMPCOMMCOLINFO_F
 #else
-void PLA_FOR2C( pla_tempcommcolinfo_f )
+void PLA_FOR2C(pla_tempcommcolinfo_f,PLA_TEMPCOMMCOLINFO_F)
 #endif
 ( FINT *templ, MPI_Fint *comm, FINT *rank, 
 			       FINT *numnodes, FINT *ierror )
@@ -389,7 +389,7 @@ void PLA_FOR2C( pla_tempcommcolinfo_f )
 #if MANUFACTURE == CRAY
 void PLA_TEMPCOMMCOL_F
 #else
-void PLA_FOR2C( pla_tempcommcol_f )
+void PLA_FOR2C(pla_tempcommcol_f,PLA_TEMPCOMMCOL_F)
 #endif
 ( FINT *templ, MPI_Fint *comm, FINT *ierror )
 {
@@ -411,7 +411,7 @@ void PLA_FOR2C( pla_tempcommcol_f )
 #if MANUFACTURE == CRAY
 void PLA_TEMPCOMMCOLRANK_F
 #else
-void PLA_FOR2C( pla_tempcommcolrank_f )
+void PLA_FOR2C(pla_tempcommcolrank_f,PLA_TEMPCOMMCOLRANK_F)
 #endif
 ( FINT *templ, FINT *rank, FINT *ierror )
 {
@@ -429,7 +429,7 @@ void PLA_FOR2C( pla_tempcommcolrank_f )
 #if MANUFACTURE == CRAY
 void PLA_TEMPCOMMCOLSIZE_F
 #else
-void PLA_FOR2C( pla_tempcommcolsize_f )
+void PLA_FOR2C(pla_tempcommcolsize_f,PLA_TEMPCOMMCOLSIZE_F)
 #endif
 ( FINT *templ, FINT *numnodes, FINT *ierror )
 {
@@ -447,7 +447,7 @@ void PLA_FOR2C( pla_tempcommcolsize_f )
 #if MANUFACTURE == CRAY
 void PLA_TEMPNB_F
 #else
-void PLA_FOR2C( pla_tempnb_f )
+void PLA_FOR2C(pla_tempnb_f,PLA_TEMPNB_F)
 #endif
 ( FINT *templ, FINT *nb_distr, FINT *ierror )
 {
@@ -465,7 +465,7 @@ void PLA_FOR2C( pla_tempnb_f )
 #if MANUFACTURE == CRAY
 void PLA_TEMPZEROORONE_F
 #else
-void PLA_FOR2C( pla_tempzeroorone_f )
+void PLA_FOR2C(pla_tempzeroorone_f,PLA_TEMPZEROORONE_F)
 #endif
 ( FINT *templ, FINT *zero_or_one, FINT *ierror )
 {
@@ -487,7 +487,7 @@ void PLA_FOR2C( pla_tempzeroorone_f )
 #if MANUFACTURE == CRAY
 void PLA_VECTORCREATE_F
 #else
-void PLA_FOR2C( pla_vectorcreate_f )
+void PLA_FOR2C(pla_vectorcreate_f,PLA_VECTORCREATE_F)
 #endif
 ( FINT *datatype, FINT *m, FINT *templ, 
 			  FINT *align_row, FINT *x, FINT *ierror )
@@ -501,7 +501,7 @@ void PLA_FOR2C( pla_vectorcreate_f )
 #if MANUFACTURE == CRAY
 void PLA_MVECTORCREATE_F
 #else
-void PLA_FOR2C( pla_mvectorcreate_f )
+void PLA_FOR2C(pla_mvectorcreate_f,PLA_MVECTORCREATE_F)
 #endif
 ( FINT *datatype, FINT *m, FINT *n, FINT *templ, 
                         FINT *align_row, FINT *x, FINT *ierror )
@@ -521,7 +521,7 @@ void PLA_FOR2C( pla_mvectorcreate_f )
 #if MANUFACTURE == CRAY
 void PLA_MATRIXCREATE_F
 #else
-void PLA_FOR2C( pla_matrixcreate_f )
+void PLA_FOR2C(pla_matrixcreate_f,PLA_MATRIXCREATE_F)
 #endif
 ( FINT *datatype, FINT *m, FINT *n, FINT *templ, 
 			  FINT *align_row, FINT *align_col, FINT *a, 
@@ -544,7 +544,7 @@ void PLA_FOR2C( pla_matrixcreate_f )
 #if MANUFACTURE == CRAY
 void PLA_MSCALARCREATE_F
 #else
-void PLA_FOR2C( pla_mscalarcreate_f )
+void PLA_FOR2C(pla_mscalarcreate_f,PLA_MSCALARCREATE_F)
 #endif
 ( FINT *datatype, FINT *owner_row, FINT *owner_col,
 			   FINT *m, FINT *n, FINT *templ, FINT *x, 
@@ -567,7 +567,7 @@ void PLA_FOR2C( pla_mscalarcreate_f )
 #if MANUFACTURE == CRAY
 void PLA_PVECTORCREATE_F
 #else
-void PLA_FOR2C( pla_pvectorcreate_f )
+void PLA_FOR2C(pla_pvectorcreate_f,PLA_PVECTORCREATE_F)
 #endif
 ( FINT *datatype, FINT *project_onto,
                           FINT *owner, FINT *m, FINT *templ, 
@@ -580,7 +580,7 @@ void PLA_FOR2C( pla_pvectorcreate_f )
 #if MANUFACTURE == CRAY
 void PLA_PMVECTORCREATE_F
 #else
-void PLA_FOR2C( pla_pmvectorcreate_f )
+void PLA_FOR2C(pla_pmvectorcreate_f,PLA_PMVECTORCREATE_F)
 #endif
 ( FINT *datatype, FINT *project_onto,
 			    FINT *owner, FINT *m, FINT *n, FINT *templ, 
@@ -603,7 +603,7 @@ void PLA_FOR2C( pla_pmvectorcreate_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJOBJTYPE_F
 #else
-void PLA_FOR2C( pla_objobjtype_f )
+void PLA_FOR2C(pla_objobjtype_f,PLA_OBJOBJTYPE_F)
 #endif
 ( FINT *obj, FINT *objtype, FINT *ierror )
 {
@@ -619,7 +619,7 @@ void PLA_FOR2C( pla_objobjtype_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJDATATYPE_F
 #else
-void PLA_FOR2C( pla_objdatatype_f )
+void PLA_FOR2C(pla_objdatatype_f,PLA_OBJDATATYPE_F)
 #endif
 ( FINT *obj, FINT *datatype, FINT *ierror )
 {
@@ -640,7 +640,7 @@ void PLA_FOR2C( pla_objdatatype_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJTEMPLATE_F
 #else
-void PLA_FOR2C( pla_objtemplate_f )
+void PLA_FOR2C(pla_objtemplate_f,PLA_OBJTEMPLATE_F)
 #endif
 ( FINT *obj, FINT *templ, FINT *ierror )
 {
@@ -656,7 +656,7 @@ void PLA_FOR2C( pla_objtemplate_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJFREE_F
 #else
-void PLA_FOR2C( pla_objfree_f )
+void PLA_FOR2C(pla_objfree_f,PLA_OBJFREE_F)
 #endif
 ( FINT *obj, FINT *ierror )
 {
@@ -672,7 +672,7 @@ void PLA_FOR2C( pla_objfree_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJGLOBALINFO_F
 #else
-void PLA_FOR2C( pla_objglobalinfo_f )
+void PLA_FOR2C(pla_objglobalinfo_f,PLA_OBJGLOBALINFO_F)
 #endif
 ( FINT *obj, FINT *global_length,
 			   FINT *global_width, FINT *project_onto,
@@ -702,7 +702,7 @@ void PLA_FOR2C( pla_objglobalinfo_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJGLOBALLENGTH_F
 #else
-void PLA_FOR2C( pla_objgloballength_f )
+void PLA_FOR2C(pla_objgloballength_f,PLA_OBJGLOBALLENGTH_F)
 #endif
 ( int *obj, int *length, int *ierror )
 {
@@ -719,7 +719,7 @@ void PLA_FOR2C( pla_objgloballength_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJGLOBALWIDTH_F
 #else
-void PLA_FOR2C( pla_objglobalwidth_f )
+void PLA_FOR2C(pla_objglobalwidth_f,PLA_OBJGLOBALWIDTH_F)
 #endif
 ( FINT *obj, FINT *width, FINT *ierror )
 {
@@ -736,7 +736,7 @@ void PLA_FOR2C( pla_objglobalwidth_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJGLOBALSIZE_F
 #else
-void PLA_FOR2C( pla_objglobalsize_f )
+void PLA_FOR2C(pla_objglobalsize_f,PLA_OBJGLOBALSIZE_F)
 #endif
 ( FINT *obj, FINT *size, FINT *ierror )
 {
@@ -753,7 +753,7 @@ void PLA_FOR2C( pla_objglobalsize_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJGLOBALNUMVECS_F
 #else
-void PLA_FOR2C( pla_objglobalnumvecs_f )
+void PLA_FOR2C(pla_objglobalnumvecs_f,PLA_OBJGLOBALNUMVECS_F)
 #endif
 ( FINT *obj, FINT *numvecs, FINT *ierror )
 {
@@ -770,7 +770,7 @@ void PLA_FOR2C( pla_objglobalnumvecs_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJPROJECTONTO_F
 #else
-void PLA_FOR2C( pla_objprojectonto_f )
+void PLA_FOR2C(pla_objprojectonto_f,PLA_OBJPROJECTONTO_F)
 #endif
 ( FINT *obj, FINT *project_onto, FINT *ierror )
 {
@@ -787,7 +787,7 @@ void PLA_FOR2C( pla_objprojectonto_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJOWNERROW_F
 #else
-void PLA_FOR2C( pla_objownerrow_f )
+void PLA_FOR2C(pla_objownerrow_f,PLA_OBJOWNERROW_F)
 #endif
 ( FINT *obj, FINT *owner_row, FINT *ierror )
 {
@@ -804,7 +804,7 @@ void PLA_FOR2C( pla_objownerrow_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJOWNERCOL_F
 #else
-void PLA_FOR2C( pla_objownercol_f )
+void PLA_FOR2C(pla_objownercol_f,PLA_OBJOWNERCOL_F)
 #endif
 ( FINT *obj, FINT *owner_col, FINT *ierror )
 {
@@ -821,7 +821,7 @@ void PLA_FOR2C( pla_objownercol_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJGLOBALALIGN_F
 #else
-void PLA_FOR2C( pla_objglobalalign_f )
+void PLA_FOR2C(pla_objglobalalign_f,PLA_OBJGLOBALALIGN_F)
 #endif
 ( FINT *obj, FINT *global_align, FINT *ierror )
 {
@@ -838,7 +838,7 @@ void PLA_FOR2C( pla_objglobalalign_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJGLOBALALIGNROW_F
 #else
-void PLA_FOR2C( pla_objglobalalignrow_f )
+void PLA_FOR2C(pla_objglobalalignrow_f,PLA_OBJGLOBALALIGNROW_F)
 #endif
 ( FINT *obj, FINT *global_align_row, 
 				 FINT *ierror )
@@ -856,7 +856,7 @@ void PLA_FOR2C( pla_objglobalalignrow_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJGLOBALALIGNCOL_F
 #else
-void PLA_FOR2C( pla_objglobalaligncol_f )
+void PLA_FOR2C(pla_objglobalaligncol_f,PLA_OBJGLOBALALIGNCOL_F)
 #endif
 ( FINT *obj, FINT *global_align_col, 
 				 FINT *ierror )
@@ -874,7 +874,7 @@ void PLA_FOR2C( pla_objglobalaligncol_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJLOCALINFO_F
 #else
-void PLA_FOR2C( pla_objlocalinfo_f )
+void PLA_FOR2C(pla_objlocalinfo_f,PLA_OBJLOCALINFO_F)
 #endif
 ( FINT *obj, FINT *local_length,
 			  FINT *local_width, void **dummy,
@@ -905,7 +905,7 @@ void PLA_FOR2C( pla_objlocalinfo_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJLOCALLENGTH_F
 #else
-void PLA_FOR2C( pla_objlocallength_f )
+void PLA_FOR2C(pla_objlocallength_f,PLA_OBJLOCALLENGTH_F)
 #endif
 ( FINT *obj, FINT *local_length, FINT *ierror )
 {
@@ -922,7 +922,7 @@ void PLA_FOR2C( pla_objlocallength_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJLOCALWIDTH_F
 #else
-void PLA_FOR2C( pla_objlocalwidth_f )
+void PLA_FOR2C(pla_objlocalwidth_f,PLA_OBJLOCALWIDTH_F)
 #endif
 ( FINT *obj, FINT *local_width, FINT *ierror )
 {
@@ -939,7 +939,7 @@ void PLA_FOR2C( pla_objlocalwidth_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJLOCALBUFFER_F
 #else
-void PLA_FOR2C( pla_objlocalbuffer_f )
+void PLA_FOR2C(pla_objlocalbuffer_f,PLA_OBJLOCALBUFFER_F)
 #endif
 ( FINT *obj, void **local_buffer, FINT *ierror )
 {
@@ -950,7 +950,7 @@ void PLA_FOR2C( pla_objlocalbuffer_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJLOCALSTRIDE_F
 #else
-void PLA_FOR2C( pla_objlocalstride_f )
+void PLA_FOR2C(pla_objlocalstride_f,PLA_OBJLOCALSTRIDE_F)
 #endif
 ( FINT *obj, FINT *local_stride, FINT *ierror )
 {
@@ -967,7 +967,7 @@ void PLA_FOR2C( pla_objlocalstride_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJLOCALLDIM_F
 #else
-void PLA_FOR2C( pla_objlocalldim_f )
+void PLA_FOR2C(pla_objlocalldim_f,PLA_OBJLOCALLDIM_F)
 #endif
 ( FINT *obj, FINT *local_ldim, FINT *ierror )
 {
@@ -988,7 +988,7 @@ void PLA_FOR2C( pla_objlocalldim_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJGETLOCALCONTENTS_F
 #else
-void PLA_FOR2C( pla_objgetlocalcontents_f )
+void PLA_FOR2C(pla_objgetlocalcontents_f,PLA_OBJGETLOCALCONTENTS_F)
 #endif
 ( FINT *obj, FINT *trans, 
 				  FINT *m, FINT *n, void *address,
@@ -1011,7 +1011,7 @@ void PLA_FOR2C( pla_objgetlocalcontents_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJSETLOCALCONTENTS_F
 #else
-void PLA_FOR2C( pla_objsetlocalcontents_f )
+void PLA_FOR2C(pla_objsetlocalcontents_f,PLA_OBJSETLOCALCONTENTS_F)
 #endif
 ( FINT *trans, 
 				  FINT *m, FINT *n, void *address,
@@ -1036,7 +1036,7 @@ void PLA_FOR2C( pla_objsetlocalcontents_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJSET_F
 #else
-void PLA_FOR2C( pla_objset_f )
+void PLA_FOR2C(pla_objset_f,PLA_OBJSET_F)
 #endif
 ( FINT *obj, FINT *datatype, void *value, FINT *ierror )
 {
@@ -1052,7 +1052,7 @@ void PLA_FOR2C( pla_objset_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJSETTOONE_F
 #else
-void PLA_FOR2C( pla_objsettoone_f )
+void PLA_FOR2C(pla_objsettoone_f,PLA_OBJSETTOONE_F)
 #endif
 ( FINT *obj, FINT *ierror )
 {
@@ -1064,7 +1064,7 @@ void PLA_FOR2C( pla_objsettoone_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJSETTOZERO_F
 #else
-void PLA_FOR2C( pla_objsettozero_f )
+void PLA_FOR2C(pla_objsettozero_f,PLA_OBJSETTOZERO_F)
 #endif
 ( int *obj, int *ierror )
 {
@@ -1076,7 +1076,7 @@ void PLA_FOR2C( pla_objsettozero_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJSETTOMINUSONE_F
 #else
-void PLA_FOR2C( pla_objsettominusone_f )
+void PLA_FOR2C(pla_objsettominusone_f,PLA_OBJSETTOMINUSONE_F)
 #endif
 ( int *obj, int *ierror )
 {
@@ -1096,7 +1096,7 @@ void PLA_FOR2C( pla_objsettominusone_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJVIEW_F
 #else
-void PLA_FOR2C( pla_objview_f )
+void PLA_FOR2C(pla_objview_f,PLA_OBJVIEW_F)
 #endif
 ( FINT *obj, FINT *global_length, 
 		    FINT *global_width, FINT *align_row, 
@@ -1115,7 +1115,7 @@ void PLA_FOR2C( pla_objview_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJVIEWALL_F
 #else
-void PLA_FOR2C( pla_objviewall_f )
+void PLA_FOR2C(pla_objviewall_f,PLA_OBJVIEWALL_F)
 #endif
 ( FINT *obj, FINT *obj_new, FINT *ierror )
 {
@@ -1127,7 +1127,7 @@ void PLA_FOR2C( pla_objviewall_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJVIEWSWAP_F
 #else
-void PLA_FOR2C( pla_objviewswap_f )
+void PLA_FOR2C(pla_objviewswap_f,PLA_OBJVIEWSWAP_F)
 #endif
 ( FINT *obj1, FINT *obj2, FINT *ierror )
 {
@@ -1143,7 +1143,7 @@ void PLA_FOR2C( pla_objviewswap_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJSPLIT4_F
 #else
-void PLA_FOR2C( pla_objsplit4_f )
+void PLA_FOR2C(pla_objsplit4_f,PLA_OBJSPLIT4_F)
 #endif
 ( FINT *obj, FINT *size_row, FINT *size_col, 
 			FINT *obj_11, FINT *obj_12,
@@ -1160,7 +1160,7 @@ void PLA_FOR2C( pla_objsplit4_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJHORZSPLIT2_F
 #else
-void PLA_FOR2C( pla_objhorzsplit_2_f )
+void PLA_FOR2C(pla_objhorzsplit_2_f,PLA_OBJHORZSPLIT_2_F)
 #endif
 ( FINT *obj, FINT *size, FINT *obj_1, FINT *obj_2, 
 			     FINT *ierror )
@@ -1176,7 +1176,7 @@ void PLA_FOR2C( pla_objhorzsplit_2_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJVERTSPLIT2_F
 #else
-void PLA_FOR2C( pla_obj_vert_split_2_f )
+void PLA_FOR2C(pla_obj_vert_split_2_f,PLA_OBJ_VERT_SPLIT_2_F)
 #endif
 ( FINT *obj, FINT *size, FINT *obj_1, FINT *obj_2, 
 			     FINT *ierror )
@@ -1196,7 +1196,7 @@ void PLA_FOR2C( pla_obj_vert_split_2_f )
 #if MANUFACTURE == CRnAY
 void PLA_OBJVIEWSHIFT_F
 #else
-void PLA_FOR2C( pla_objviewshift_f )
+void PLA_FOR2C(pla_objviewshift_f,PLA_OBJVIEWSHIFT_F)
 #endif
 ( FINT *obj,       FINT *top, 
                                 FINT *left,         FINT *right,
@@ -1216,7 +1216,7 @@ void PLA_FOR2C( pla_objviewshift_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJSPLITSIZE_F
 #else
-void PLA_FOR2C( pla_objsplitsize_f )
+void PLA_FOR2C(pla_objsplitsize_f,PLA_OBJSPLITSIZE_F)
 #endif
 ( FINT *obj, FINT *side, FINT *size, FINT *owner, 
 			   FINT *ierror )
@@ -1240,7 +1240,7 @@ void PLA_FOR2C( pla_objsplitsize_f )
 #if MANUFACTURE == CRAY
 void PLA_VECTORCREATECONFTO_F
 #else
-void PLA_FOR2C( pla_vectorcreateconfnto_f )
+void PLA_FOR2C(pla_vectorcreateconfnto_f,PLA_VECTORCREATECONFNTO_F)
 #endif
 ( FINT *obj,  FINT *new_obj, FINT *ierror )
 {
@@ -1252,7 +1252,7 @@ void PLA_FOR2C( pla_vectorcreateconfnto_f )
 #if MANUFACTURE == CRAY
 void PLA_MVECTORCREATECONFTO_F
 #else
-void PLA_FOR2C( pla_mvectorcreateconfto_f )
+void PLA_FOR2C(pla_mvectorcreateconfto_f,PLA_MVECTORCREATECONFTO_F)
 #endif
 ( FINT *obj, FINT *num_vectors, FINT *new_obj,
 				   FINT *ierror )
@@ -1267,7 +1267,7 @@ void PLA_FOR2C( pla_mvectorcreateconfto_f )
 #if MANUFACTURE == CRAY
 void PLA_PVECTORCREATECONFTO_F
 #else
-void PLA_FOR2C( pla_pvectorcreateconfto_f )
+void PLA_FOR2C(pla_pvectorcreateconfto_f,PLA_PVECTORCREATECONFTO_F)
 #endif
 ( FINT *obj,  FINT *project_onto,
 				   FINT *owner, FINT *new_obj, FINT *ierror )
@@ -1280,7 +1280,7 @@ void PLA_FOR2C( pla_pvectorcreateconfto_f )
 #if MANUFACTURE == CRAY
 void PLA_PMVECTORCREATECONFTO_F
 #else
-void PLA_FOR2C( pla_pmvectorcreateconfto_f )
+void PLA_FOR2C(pla_pmvectorcreateconfto_f,PLA_PMVECTORCREATECONFTO_F)
 #endif
 ( FINT *obj, FINT *project_onto,
 				    FINT *owner, FINT *num_vectors, 
@@ -1298,7 +1298,7 @@ void PLA_FOR2C( pla_pmvectorcreateconfto_f )
 #if MANUFACTURE == CRAY
 void PLA_MATRIXCREATECONFTO_F
 #else
-void PLA_FOR2C( pla_matrixcreateconfto_f )
+void PLA_FOR2C(pla_matrixcreateconfto_f,PLA_MATRIXCREATECONFTO_F)
 #endif
 ( FINT *obj,  FINT *new_obj, FINT *ierror )
 {
@@ -1311,7 +1311,7 @@ void PLA_FOR2C( pla_matrixcreateconfto_f )
 #if MANUFACTURE == CRAY
 void PLA_MSCALARCREATECONFTO_F
 #else
-void PLA_FOR2C( pla_mscalarcreateconfto_f )
+void PLA_FOR2C(pla_mscalarcreateconfto_f,PLA_MSCALARCREATECONFTO_F)
 #endif
 ( FINT *obj,  FINT *owner_row, 
 				   FINT *owner_col, FINT *new_obj, 
@@ -1332,7 +1332,7 @@ void PLA_FOR2C( pla_mscalarcreateconfto_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJSETORIENTATION_F
 #else
-void PLA_FOR2C( pla_objsetorientation_f )
+void PLA_FOR2C(pla_objsetorientation_f,PLA_OBJSETORIENTATION_F)
 #endif
 ( FINT *obj,  FINT *project_onto, FINT *ierror )
 {
@@ -1345,7 +1345,7 @@ void PLA_FOR2C( pla_objsetorientation_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJGETORIENTATION_F
 #else
-void PLA_FOR2C( pla_objgetorientation_f )
+void PLA_FOR2C(pla_objgetorientation_f,PLA_OBJGETORIENTATION_F)
 #endif
 ( FINT *obj,  FINT *project_onto, FINT *ierror )
 {
@@ -1366,7 +1366,7 @@ void PLA_FOR2C( pla_objgetorientation_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJOBJTYPECAST_F
 #else
-void PLA_FOR2C( pla_objobjtypecast_f )
+void PLA_FOR2C(pla_objobjtypecast_f,PLA_OBJOBJTYPECAST_F)
 #endif
 ( FINT *obj,  FINT *objtype, FINT *ierror )
 {
@@ -1390,7 +1390,7 @@ void PLA_FOR2C( pla_objobjtypecast_f )
 #if MANUFACTURE == CRAY
 void PLA_APIBEGIN_F
 #else
-void PLA_FOR2C( pla_apibegin_f )
+void PLA_FOR2C(pla_apibegin_f,PLA_APIBEGIN_F)
 #endif
 ( FINT *ierror )
 {
@@ -1402,7 +1402,7 @@ void PLA_FOR2C( pla_apibegin_f )
 #if MANUFACTURE == CRAY
 void PLA_APIEND_F
 #else
-void PLA_FOR2C( pla_apiend_f )
+void PLA_FOR2C(pla_apiend_f,PLA_APIEND_F)
 #endif
 ( FINT *ierror )
 {
@@ -1414,7 +1414,7 @@ void PLA_FOR2C( pla_apiend_f )
 #if MANUFACTURE == CRAY
 void PLA_APISTATE_F
 #else
-void PLA_FOR2C( pla_apistate_f )
+void PLA_FOR2C(pla_apistate_f,PLA_APISTATE_F)
 #endif
 ( FINT *state, FINT *ierror )
 {
@@ -1435,7 +1435,7 @@ void PLA_FOR2C( pla_apistate_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJAPIOPEN_F
 #else
-void PLA_FOR2C( pla_objapiopen_f )
+void PLA_FOR2C(pla_objapiopen_f,PLA_OBJAPIOPEN_F)
 #endif
 ( FINT *obj, FINT *ierror )
 {
@@ -1447,7 +1447,7 @@ void PLA_FOR2C( pla_objapiopen_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJAPICLOSE_F
 #else
-void PLA_FOR2C( pla_objapiclose_f )
+void PLA_FOR2C(pla_objapiclose_f,PLA_OBJAPICLOSE_F)
 #endif
 ( FINT * obj, FINT *ierror )
 {
@@ -1459,7 +1459,7 @@ void PLA_FOR2C( pla_objapiclose_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJAPIMODEF
 #else
-void PLA_FOR2C( pla_objapimodef )
+void PLA_FOR2C(pla_objapimodef,PLA_OBJAPIMODEF)
 #endif
 ( FINT *obj, FINT *mode, FINT *ierror )
 {
@@ -1480,7 +1480,7 @@ void PLA_FOR2C( pla_objapimodef )
 #if MANUFACTURE == CRAY
 void PLA_APIAXPYVECTORTOGLOBAL_F
 #else
-void PLA_FOR2C( pla_apiaxpyvectortoglobal_f )
+void PLA_FOR2C(pla_apiaxpyvectortoglobal_f,PLA_APIAXPYVECTORTOGLOBAL_F)
 #endif
 ( FINT *size, 
 				     void *alpha, void *x, 
@@ -1498,7 +1498,7 @@ void PLA_FOR2C( pla_apiaxpyvectortoglobal_f )
 #if MANUFACTURE == CRAY
 void PLA_APIAXPYGLOBALTOVECTOR_F
 #else
-void PLA_FOR2C( pla_apiaxpyglobaltovector_f )
+void PLA_FOR2C(pla_apiaxpyglobaltovector_f,PLA_APIAXPYGLOBALTOVECTOR_F)
 #endif
 ( FINT *size, 
 				     void *alpha, FINT *x_global,
@@ -1516,7 +1516,7 @@ void PLA_FOR2C( pla_apiaxpyglobaltovector_f )
 #if MANUFACTURE == CRAY
 void PLA_APIMULTIAXPYVECTORTOGLOBAL_F
 #else
-void PLA_FOR2C( pla_apimultiaxpyvectortoglobal_f )
+void PLA_FOR2C(pla_apimultiaxpyvectortoglobal_f,PLA_APIMULTIAXPYVECTORTOGLOBAL_F)
 #endif
 (  FINT *nsub, FINT *sizes, 
 				     void *alpha, void *local_vector, 
@@ -1549,7 +1549,7 @@ void PLA_FOR2C( pla_apimultiaxpyvectortoglobal_f )
 #if MANUFACTURE == CRAY
 void PLA_APIMULTIAXPYGLOBALTOVECTOR_F
 #else
-void PLA_FOR2C( pla_apimultiaxpyglobaltovector_f )
+void PLA_FOR2C(pla_apimultiaxpyglobaltovector_f,PLA_APIMULTIAXPYGLOBALTOVECTOR_F)
 #endif
 ( FINT *nsub, FINT *sizes, 
 				     void *alpha, FINT *x_global,
@@ -1589,7 +1589,7 @@ void PLA_FOR2C( pla_apimultiaxpyglobaltovector_f )
 #if MANUFACTURE == CRAY
 void PLA_APIAXPYMATRIXTOGLOBAL_F
 #else
-void PLA_FOR2C( pla_apiaxpymatrixtoglobal_f )
+void PLA_FOR2C(pla_apiaxpymatrixtoglobal_f,PLA_APIAXPYMATRIXTOGLOBAL_F)
 #endif
 ( FINT *size_row, FINT *size_col,
 				      void *alpha, void *a, 
@@ -1609,7 +1609,7 @@ void PLA_FOR2C( pla_apiaxpymatrixtoglobal_f )
 #if MANUFACTURE == CRAY
 void PLA_APIAXPYGLOBALTOMATRIX_F
 #else
-void PLA_FOR2C( pla_apiaxpyglobaltomatrix_f )
+void PLA_FOR2C(pla_apiaxpyglobaltomatrix_f,PLA_APIAXPYGLOBALTOMATRIX_F)
 #endif
 ( FINT *size_row, FINT *size_col,
 				     void *alpha, FINT *a_global, 
@@ -1628,7 +1628,7 @@ void PLA_FOR2C( pla_apiaxpyglobaltomatrix_f )
 #if MANUFACTURE == CRAY
 void PLA_APIMULTIAXPYMATRIXTOGLOBAL_F
 #else
-void PLA_FOR2C( pla_apimultiaxpymatrixtoglobal_f )
+void PLA_FOR2C(pla_apimultiaxpymatrixtoglobal_f,PLA_APIMULTIAXPYMATRIXTOGLOBAL_F)
 #endif
 ( FINT *nsub_row, FINT *nsub_col,
 					    FINT *size_row, FINT *size_col,
@@ -1676,7 +1676,7 @@ void PLA_FOR2C( pla_apimultiaxpymatrixtoglobal_f )
 #if MANUFACTURE == CRAY
 void PLA_APIMULTIAXPYGLOBALTOMATRIX_F
 #else
-void PLA_FOR2C( pla_apimultiaxpyglobaltomatrix_f )
+void PLA_FOR2C(pla_apimultiaxpyglobaltomatrix_f,PLA_APIMULTIAXPYGLOBALTOMATRIX_F)
 #endif
 ( FINT *nsub_row, FINT *nsub_col,
 			             FINT *size_row, FINT *size_col,
@@ -1726,7 +1726,7 @@ void PLA_FOR2C( pla_apimultiaxpyglobaltomatrix_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJAPISYNC_F
 #else
-void PLA_FOR2C( pla_objapisync_f )
+void PLA_FOR2C(pla_objapisync_f,PLA_OBJAPISYNC_F)
 #endif
 ( FINT *obj, FINT *ierror )
 {
@@ -1746,7 +1746,7 @@ void PLA_FOR2C( pla_objapisync_f )
 #if MANUFACTURE == CRAY
 void PLA_COPY_F
 #else
-void PLA_FOR2C( pla_copy_f )
+void PLA_FOR2C(pla_copy_f,PLA_COPY_F)
 #endif
 ( FINT *obj_from, FINT *obj_to, FINT *ierror )
 {
@@ -1758,7 +1758,7 @@ void PLA_FOR2C( pla_copy_f )
 #if MANUFACTURE == CRAY
 void PLA_COPYX_F
 #else
-void PLA_FOR2C( pla_copyx_f )
+void PLA_FOR2C(pla_copyx_f,PLA_COPYX_F)
 #endif
 ( FINT *shape, FINT *obj_from, FINT *obj_to, FINT *ierror )
 {
@@ -1775,7 +1775,7 @@ void PLA_FOR2C( pla_copyx_f )
 #if MANUFACTURE == CRAY
 void PLA_REDUCE_F
 #else
-void PLA_FOR2C( pla_reduce_f )
+void PLA_FOR2C(pla_reduce_f,PLA_REDUCE_F)
 #endif
 ( FINT *obj_from, FINT *op, FINT *obj_to, FINT *ierror )
 {
@@ -1789,7 +1789,7 @@ void PLA_FOR2C( pla_reduce_f )
 #if MANUFACTURE == CRAY
 void PLA_REDUCEX_F
 #else
-void PLA_FOR2C( pla_reducex_f )
+void PLA_FOR2C(pla_reducex_f,PLA_REDUCEX_F)
 #endif
 ( FINT *shape, FINT *obj_from, FINT *obj_alpha, 
 		    FINT *obj_to, FINT *ierror )
@@ -1808,7 +1808,7 @@ void PLA_FOR2C( pla_reducex_f )
 #if MANUFACTURE == CRAY
 void PLA_TEMPSETCOMMDIR_F
 #else
-void PLA_FOR2C( pla_tempsetcommdir_f )
+void PLA_FOR2C(pla_tempsetcommdir_f,PLA_TEMPSETCOMMDIR_F)
 #endif
 ( FINT *templ, FINT *mesh_dimension, 
 			      FINT *direction, FINT *ierror )
@@ -1824,7 +1824,7 @@ void PLA_FOR2C( pla_tempsetcommdir_f )
 #if MANUFACTURE == CRAY
 void PLA_TEMPGETCOMMDIR_F
 #else
-void PLA_FOR2C( pla_tempgetcommdir_f )
+void PLA_FOR2C(pla_tempgetcommdir_f,PLA_TEMPGETCOMMDIR_F)
 #endif
 ( FINT *templ, FINT *mesh_dimension, 
 			      FINT *direction, FINT *ierror )
@@ -1853,7 +1853,7 @@ void PLA_FOR2C( pla_tempgetcommdir_f )
 #if MANUFACTURE == CRAY
 void PLA_LOCALCOPY_F
 #else
-void PLA_FOR2C( pla_localcopy_f )
+void PLA_FOR2C(pla_localcopy_f,PLA_LOCALCOPY_F)
 #endif
 ( FINT *x, FINT *y, FINT *ierror )
 {
@@ -1865,7 +1865,7 @@ void PLA_FOR2C( pla_localcopy_f )
 #if MANUFACTURE == CRAY
 void PLA_LOCALSWAP_F
 #else
-void PLA_FOR2C( pla_localswap_f )
+void PLA_FOR2C(pla_localswap_f,PLA_LOCALSWAP_F)
 #endif
 ( FINT *x, FINT *y, FINT *ierror )
 {
@@ -1877,7 +1877,7 @@ void PLA_FOR2C( pla_localswap_f )
 #if MANUFACTURE == CRAY
 void PLA_LOCALSCAL_F
 #else
-void PLA_FOR2C( pla_localscal_f )
+void PLA_FOR2C(pla_localscal_f,PLA_LOCALSCAL_F)
 #endif
 ( FINT *alpha, FINT *x, FINT *ierror )
 {
@@ -1889,7 +1889,7 @@ void PLA_FOR2C( pla_localscal_f )
 #if MANUFACTURE == CRAY
 void PLA_LOCALINVSCAL_F
 #else
-void PLA_FOR2C( pla_localinvscal_f )
+void PLA_FOR2C(pla_localinvscal_f,PLA_LOCALINVSCAL_F)
 #endif
 ( FINT *alpha, FINT *x, FINT *ierror )
 {
@@ -1901,7 +1901,7 @@ void PLA_FOR2C( pla_localinvscal_f )
 #if MANUFACTURE == CRAY
 void PLA_LOCALAXPY_F
 #else
-void PLA_FOR2C( pla_localaxpy_f )
+void PLA_FOR2C(pla_localaxpy_f,PLA_LOCALAXPY_F)
 #endif
 ( FINT *alpha, FINT *x, FINT *y, FINT *ierror )
 {
@@ -1915,7 +1915,7 @@ void PLA_FOR2C( pla_localaxpy_f )
 #if MANUFACTURE == CRAY
 void PLA_LOCALDOT_F
 #else
-void PLA_FOR2C( pla_localdot_f )
+void PLA_FOR2C(pla_localdot_f,PLA_LOCALDOT_F)
 #endif
 ( FINT *x, FINT *y, FINT *alpha , FINT *ierror )
 {
@@ -1927,7 +1927,7 @@ void PLA_FOR2C( pla_localdot_f )
 #if MANUFACTURE == CRAY
 void PLA_LOCALASUM_F
 #else
-void PLA_FOR2C( pla_localasum_f )
+void PLA_FOR2C(pla_localasum_f,PLA_LOCALASUM_F)
 #endif
 ( FINT *x, FINT *alpha , FINT *ierror )
 {
@@ -1939,7 +1939,7 @@ void PLA_FOR2C( pla_localasum_f )
 #if MANUFACTURE == CRAY
 void PLA_LOCALNRM2_F
 #else
-void PLA_FOR2C( pla_localnrm2_f )
+void PLA_FOR2C(pla_localnrm2_f,PLA_LOCALNRM2_F)
 #endif
 ( FINT *x, FINT *alpha , FINT *ierror )
 {
@@ -1951,7 +1951,7 @@ void PLA_FOR2C( pla_localnrm2_f )
 #if MANUFACTURE == CRAY
 void PLA_LOCALIAMAX_F
 #else
-void PLA_FOR2C( pla_localiamax_f )
+void PLA_FOR2C(pla_localiamax_f,PLA_LOCALIAMAX_F)
 #endif
 ( FINT *x, FINT *alpha, FINT *index, FINT *ierror )
 {
@@ -1969,7 +1969,7 @@ void PLA_FOR2C( pla_localiamax_f )
 #if MANUFACTURE == CRAY
 void PLA_SWAP_F
 #else
-void PLA_FOR2C( pla_swap_f )
+void PLA_FOR2C(pla_swap_f,PLA_SWAP_F)
 #endif
 ( FINT *x, FINT *y, FINT *ierror )
 {
@@ -1981,7 +1981,7 @@ void PLA_FOR2C( pla_swap_f )
 #if MANUFACTURE == CRAY
 void PLA_SCAL_F
 #else
-void PLA_FOR2C( pla_scal_f )
+void PLA_FOR2C(pla_scal_f,PLA_SCAL_F)
 #endif
 ( FINT *alpha, FINT *x, FINT *ierror )
 {
@@ -1993,7 +1993,7 @@ void PLA_FOR2C( pla_scal_f )
 #if MANUFACTURE == CRAY
 void PLA_INVSCAL_F
 #else
-void PLA_FOR2C( pla_invscal_f )
+void PLA_FOR2C(pla_invscal_f,PLA_INVSCAL_F)
 #endif
 ( FINT *alpha, FINT *x, FINT *ierror )
 {
@@ -2005,7 +2005,7 @@ void PLA_FOR2C( pla_invscal_f )
 #if MANUFACTURE == CRAY
 void PLA_AXPY_F
 #else
-void PLA_FOR2C( pla_axpy_f )
+void PLA_FOR2C(pla_axpy_f,PLA_AXPY_F)
 #endif
 ( FINT *alpha, FINT *x, FINT *y, FINT *ierror )
 {
@@ -2019,7 +2019,7 @@ void PLA_FOR2C( pla_axpy_f )
 #if MANUFACTURE == CRAY
 void PLA_DOT_F
 #else
-void PLA_FOR2C( pla_dot_f )
+void PLA_FOR2C(pla_dot_f,PLA_DOT_F)
 #endif
 ( FINT *x, FINT *y, FINT *alpha , FINT *ierror )
 {
@@ -2031,7 +2031,7 @@ void PLA_FOR2C( pla_dot_f )
 #if MANUFACTURE == CRAY
 void PLA_ASUM_F
 #else
-void PLA_FOR2C( pla_asum_f )
+void PLA_FOR2C(pla_asum_f,PLA_ASUM_F)
 #endif
 ( FINT *x, FINT *alpha , FINT *ierror )
 {
@@ -2043,7 +2043,7 @@ void PLA_FOR2C( pla_asum_f )
 #if MANUFACTURE == CRAY
 void PLA_NRM2_F
 #else
-void PLA_FOR2C( pla_nrm2_f )
+void PLA_FOR2C(pla_nrm2_f,PLA_NRM2_F)
 #endif
 ( FINT *x, FINT *alpha , FINT *ierror )
 {
@@ -2055,7 +2055,7 @@ void PLA_FOR2C( pla_nrm2_f )
 #if MANUFACTURE == CRAY
 void PLA_IAMAX_F
 #else
-void PLA_FOR2C( pla_iamax_f )
+void PLA_FOR2C(pla_iamax_f,PLA_IAMAX_F)
 #endif
 ( FINT *x, FINT *index, FINT *alpha, FINT *ierror )
 {
@@ -2077,7 +2077,7 @@ void PLA_FOR2C( pla_iamax_f )
 #if MANUFACTURE == CRAY
 void PLA_LOCALGEMV_F
 #else
-void PLA_FOR2C( pla_localgemv_f )
+void PLA_FOR2C(pla_localgemv_f,PLA_LOCALGEMV_F)
 #endif
 ( FINT *trans, FINT *alpha, FINT *a, FINT *x, 
 		                    FINT *beta, FINT *y, FINT *ierror )
@@ -2093,7 +2093,7 @@ void PLA_FOR2C( pla_localgemv_f )
 #if MANUFACTURE == CRAY
 void PLA_LOCALSYMV_F
 #else
-void PLA_FOR2C( pla_localsymv_f )
+void PLA_FOR2C(pla_localsymv_f,PLA_LOCALSYMV_F)
 #endif
 ( FINT *uplo, FINT *alpha, FINT *a, FINT *x, FINT *beta, FINT *y, FINT *ierror )
 {
@@ -2108,7 +2108,7 @@ void PLA_FOR2C( pla_localsymv_f )
 #if MANUFACTURE == CRAY
 void PLA_LOCALGER_F
 #else
-void PLA_FOR2C( pla_localger_f )
+void PLA_FOR2C(pla_localger_f,PLA_LOCALGER_F)
 #endif
 ( FINT *alpha, FINT *x, FINT *y, FINT *a, FINT *ierror )
 {
@@ -2122,7 +2122,7 @@ void PLA_FOR2C( pla_localger_f )
 #if MANUFACTURE == CRAY
 void PLA_LOCALSYR_F
 #else
-void PLA_FOR2C( pla_localsyr_f )
+void PLA_FOR2C(pla_localsyr_f,PLA_LOCALSYR_F)
 #endif
 ( FINT *uplo, FINT *alpha, FINT *x, FINT *a, FINT *ierror )
 {
@@ -2136,7 +2136,7 @@ void PLA_FOR2C( pla_localsyr_f )
 #if MANUFACTURE == CRAY
 void PLA_LOCALSYR2_F
 #else
-void PLA_FOR2C( pla_localsyr2_f )
+void PLA_FOR2C(pla_localsyr2_f,PLA_LOCALSYR2_F)
 #endif
 ( FINT *uplo, FINT *alpha, FINT *x, FINT *y, 
 		       FINT *a, FINT *ierror )
@@ -2152,7 +2152,7 @@ void PLA_FOR2C( pla_localsyr2_f )
 #if MANUFACTURE == CRAY
 void PLA_LOCALTRMV_F
 #else
-void PLA_FOR2C( pla_localtrmv_f )
+void PLA_FOR2C(pla_localtrmv_f,PLA_LOCALTRMV_F)
 #endif
 ( FINT *uplo, FINT *trans, FINT *diag, 
 		       FINT *a, FINT *x, FINT *ierror )
@@ -2168,7 +2168,7 @@ void PLA_FOR2C( pla_localtrmv_f )
 #if MANUFACTURE == CRAY
 void PLA_LOCALTRSV_F
 #else
-void PLA_FOR2C( pla_localtrsv_f )
+void PLA_FOR2C(pla_localtrsv_f,PLA_LOCALTRSV_F)
 #endif
 ( FINT *uplo, FINT *trans, FINT *diag, FINT *a, FINT *x, FINT *ierror )
 {
@@ -2186,7 +2186,7 @@ void PLA_FOR2C( pla_localtrsv_f )
 #if MANUFACTURE == CRAY
 void PLA_GEMV_F
 #else
-void PLA_FOR2C( pla_gemv_f )
+void PLA_FOR2C(pla_gemv_f,PLA_GEMV_F)
 #endif
 ( FINT *trans, FINT *alpha, FINT *a, FINT *x, 
 		 FINT *beta, FINT *y, FINT *ierror )
@@ -2201,7 +2201,7 @@ void PLA_FOR2C( pla_gemv_f )
 #if MANUFACTURE == CRAY
 void PLA_SYMV_F
 #else
-void PLA_FOR2C( pla_symv_f )
+void PLA_FOR2C(pla_symv_f,PLA_SYMV_F)
 #endif
 ( FINT *uplo, FINT *alpha, FINT *a, FINT *x, 
 		 FINT *beta, FINT *y, FINT *ierror )
@@ -2216,7 +2216,7 @@ void PLA_FOR2C( pla_symv_f )
 #if MANUFACTURE == CRAY
 void PLA_GER_F
 #else
-void PLA_FOR2C( pla_ger_f )
+void PLA_FOR2C(pla_ger_f,PLA_GER_F)
 #endif
 ( FINT *alpha, FINT *x, FINT *y, FINT *a, FINT *ierror )
 {
@@ -2229,7 +2229,7 @@ void PLA_FOR2C( pla_ger_f )
 #if MANUFACTURE == CRAY
 void PLA_SYR_F
 #else
-void PLA_FOR2C( pla_syr_f )
+void PLA_FOR2C(pla_syr_f,PLA_SYR_F)
 #endif
 ( FINT *uplo, FINT *alpha, FINT *x, FINT *a, FINT *ierror )
 {
@@ -2242,7 +2242,7 @@ void PLA_FOR2C( pla_syr_f )
 #if MANUFACTURE == CRAY
 void PLA_SYR2_F
 #else
-void PLA_FOR2C( pla_syr2_f )
+void PLA_FOR2C(pla_syr2_f,PLA_SYR2_F)
 #endif
 ( FINT *uplo, FINT *alpha, FINT *x, FINT *y, FINT *a, 
 		 FINT *ierror )
@@ -2257,7 +2257,7 @@ void PLA_FOR2C( pla_syr2_f )
 #if MANUFACTURE == CRAY
 void PLA_TRMV_F
 #else
-void PLA_FOR2C( pla_trmv_f )
+void PLA_FOR2C(pla_trmv_f,PLA_TRMV_F)
 #endif
 ( FINT *uplo, FINT *trans, FINT *diag, FINT *a, FINT *x, 
 		 FINT *ierror )
@@ -2272,7 +2272,7 @@ void PLA_FOR2C( pla_trmv_f )
 #if MANUFACTURE == CRAY
 void PLA_TRSV_F
 #else
-void PLA_FOR2C( pla_trsv_f )
+void PLA_FOR2C(pla_trsv_f,PLA_TRSV_F)
 #endif
 ( FINT *uplo, FINT *trans, FINT *diag, FINT *a, FINT *x, 
 		 FINT *ierror )
@@ -2294,7 +2294,7 @@ void PLA_FOR2C( pla_trsv_f )
 #if MANUFACTURE == CRAY
 void PLA_LOCALGEMM_F
 #else
-void PLA_FOR2C( pla_localgemm_f )
+void PLA_FOR2C(pla_localgemm_f,PLA_LOCALGEMM_F)
 #endif
 ( FINT *transa, FINT *transb, 
 		       FINT *alpha, FINT *a, FINT *b, 
@@ -2310,7 +2310,7 @@ void PLA_FOR2C( pla_localgemm_f )
 #if MANUFACTURE == CRAY
 void PLA_LOCALSYMM_F
 #else
-void PLA_FOR2C( pla_localsymm_f )
+void PLA_FOR2C(pla_localsymm_f,PLA_LOCALSYMM_F)
 #endif
 ( FINT *side, FINT *uplo, FINT *alpha, FINT *a, FINT *b, 
 		       FINT *beta,  FINT *c, FINT *ierror )
@@ -2325,7 +2325,7 @@ void PLA_FOR2C( pla_localsymm_f )
 #if MANUFACTURE == CRAY
 void PLA_LOCALSYRK_F
 #else
-void PLA_FOR2C( pla_localsyrk_f )
+void PLA_FOR2C(pla_localsyrk_f,PLA_LOCALSYRK_F)
 #endif
 ( FINT *uplo, FINT *trans, 
 		      FINT *alpha, FINT *a, 
@@ -2341,7 +2341,7 @@ void PLA_FOR2C( pla_localsyrk_f )
 #if MANUFACTURE == CRAY
 void PLA_LOCALSYR2K_F
 #else
-void PLA_FOR2C( pla_localsyr2k_f )
+void PLA_FOR2C(pla_localsyr2k_f,PLA_LOCALSYR2K_F)
 #endif
 ( FINT *uplo, FINT *trans, FINT *alpha, FINT *a, FINT *b,
 			FINT *beta,  FINT *c, FINT *ierror )
@@ -2356,7 +2356,7 @@ void PLA_FOR2C( pla_localsyr2k_f )
 #if MANUFACTURE == CRAY
 void PLA_LOCALTRMM_F
 #else
-void PLA_FOR2C( pla_localtrmm_f )
+void PLA_FOR2C(pla_localtrmm_f,PLA_LOCALTRMM_F)
 #endif
 ( FINT *side, FINT *uplo, FINT *trans, FINT *diag,
 		       FINT *alpha, FINT *a, FINT *b, FINT *ierror ) 
@@ -2372,7 +2372,7 @@ void PLA_FOR2C( pla_localtrmm_f )
 #if MANUFACTURE == CRAY
 void PLA_LOCALTRSM_F
 #else
-void PLA_FOR2C( pla_localtrsm_f )
+void PLA_FOR2C(pla_localtrsm_f,PLA_LOCALTRSM_F)
 #endif
 ( FINT *side, FINT *uplo, FINT *trans, FINT *diag,
 		       FINT *alpha, FINT *a, FINT *b, FINT *ierror ) 
@@ -2393,7 +2393,7 @@ void PLA_FOR2C( pla_localtrsm_f )
 #if MANUFACTURE == CRAY
 void PLA_GEMM_F
 #else
-void PLA_FOR2C( pla_gemm_f )
+void PLA_FOR2C(pla_gemm_f,PLA_GEMM_F)
 #endif
 ( FINT *transa, FINT *transb, FINT *alpha, FINT *a, FINT *b, 
 		 FINT *beta,  FINT *c, FINT *ierror )
@@ -2408,7 +2408,7 @@ void PLA_FOR2C( pla_gemm_f )
 #if MANUFACTURE == CRAY
 void PLA_SYMM_F
 #else
-void PLA_FOR2C( pla_symm_f )
+void PLA_FOR2C(pla_symm_f,PLA_SYMM_F)
 #endif
 ( FINT *side, FINT *uplo, FINT *alpha, FINT *a, FINT *b, 
 		 FINT *beta,  FINT *c, FINT *ierror )
@@ -2423,7 +2423,7 @@ void PLA_FOR2C( pla_symm_f )
 #if MANUFACTURE == CRAY
 void PLA_SYRK_F
 #else
-void PLA_FOR2C( pla_syrk_f )
+void PLA_FOR2C(pla_syrk_f,PLA_SYRK_F)
 #endif
 ( FINT *uplo, FINT *trans, 
 		 FINT *alpha, FINT *a, 
@@ -2439,7 +2439,7 @@ void PLA_FOR2C( pla_syrk_f )
 #if MANUFACTURE == CRAY
 void PLA_SYR2K_F
 #else
-void PLA_FOR2C( pla_syr2k_f )
+void PLA_FOR2C(pla_syr2k_f,PLA_SYR2K_F)
 #endif
 ( FINT *uplo, FINT *trans, FINT *alpha, FINT *a, FINT *b,
 		  FINT *beta,  FINT *c, FINT *ierror )
@@ -2454,7 +2454,7 @@ void PLA_FOR2C( pla_syr2k_f )
 #if MANUFACTURE == CRAY
 void PLA_TRMM_F
 #else
-void PLA_FOR2C( pla_trmm_f )
+void PLA_FOR2C(pla_trmm_f,PLA_TRMM_F)
 #endif
 ( FINT *side, FINT *uplo, FINT *trans, FINT *diag,
 		 FINT *alpha, FINT *a, FINT *b, FINT *ierror ) 
@@ -2469,7 +2469,7 @@ void PLA_FOR2C( pla_trmm_f )
 #if MANUFACTURE == CRAY
 void PLA_TRSM_F
 #else
-void PLA_FOR2C( pla_trsm_f )
+void PLA_FOR2C(pla_trsm_f,PLA_TRSM_F)
 #endif
 ( FINT *side, FINT *uplo, FINT *trans, FINT *diag,
 		 FINT *alpha, FINT *a, FINT *b, FINT *ierror ) 
@@ -2484,7 +2484,7 @@ void PLA_FOR2C( pla_trsm_f )
 #if MANUFACTURE == CRAY
 void PLA_ENVIRONNBALG_F
 #else
-void PLA_FOR2C( pla_environnbalg_f )
+void PLA_FOR2C(pla_environnbalg_f,PLA_ENVIRONNBALG_F)
 #endif
 ( FINT *operation, FINT *template, FINT *nb_alg, 
 			   FINT *ierror )
@@ -2508,7 +2508,7 @@ void PLA_FOR2C( pla_environnbalg_f )
 #if MANUFACTURE == CRAY
 void PLA_COPYADD_F
 #else
-void PLA_FOR2C( pla_copyadd_f )
+void PLA_FOR2C(pla_copyadd_f,PLA_COPYADD_F)
 #endif
 ( FINT *obj_from, FINT *obj_to, FINT *ierror )
 {
@@ -2522,7 +2522,7 @@ void PLA_FOR2C( pla_copyadd_f )
 #if MANUFACTURE == CRAY
 void PLA_DOTADD_F
 #else
-void PLA_FOR2C( pla_dotadd_f )
+void PLA_FOR2C(pla_dotadd_f,PLA_DOTADD_F)
 #endif
 ( FINT *x, FINT *y, FINT *alpha , FINT *ierror )
 {
@@ -2536,7 +2536,7 @@ void PLA_FOR2C( pla_dotadd_f )
 #if MANUFACTURE == CRAY
 void PLA_DOTX_F
 #else
-void PLA_FOR2C( pla_dotx_f )
+void PLA_FOR2C(pla_dotx_f,PLA_DOTX_F)
 #endif
 ( FINT *alpha, FINT *x, FINT *y, FINT *beta, FINT *result,
                   FINT *ierror )
@@ -2551,7 +2551,7 @@ void PLA_FOR2C( pla_dotx_f )
 #if MANUFACTURE == CRAY
 void PLA_CREATECONSTANTSCONFTO_F
 #else
-void PLA_FOR2C( pla_createconstantsconfto_f )
+void PLA_FOR2C(pla_createconstantsconfto_f,PLA_CREATECONSTANTSCONFTO_F)
 #endif
 ( FINT *a, 
 				     FINT *minus_one, 
@@ -2570,7 +2570,7 @@ void PLA_FOR2C( pla_createconstantsconfto_f )
 #if MANUFACTURE == CRAY
 void PLA_LOCALEQUALZERO_F
 #else
-void PLA_FOR2C( pla_localequalzero_f )
+void PLA_FOR2C(pla_localequalzero_f,PLA_LOCALEQUALZERO_F)
 #endif
 ( FINT *alpha, FINT *result, FINT *ierror )
 {
@@ -2584,7 +2584,7 @@ void PLA_FOR2C( pla_localequalzero_f )
 #if MANUFACTURE == CRAY
 void PLA_LOCALINVERTSIGN_F
 #else
-void PLA_FOR2C( pla_localinvertsign_f )
+void PLA_FOR2C(pla_localinvertsign_f,PLA_LOCALINVERTSIGN_F)
 #endif
 ( FINT *alpha, FINT *ierror )
 {
@@ -2597,7 +2597,7 @@ void PLA_FOR2C( pla_localinvertsign_f )
 #if MANUFACTURE == CRAY
 void PLA_LOCALSIGN_F
 #else
-void PLA_FOR2C( pla_localsign_f )
+void PLA_FOR2C(pla_localsign_f,PLA_LOCALSIGN_F)
 #endif
 ( FINT *alpha, FINT *sign, FINT *ierror )
 {
@@ -2611,7 +2611,7 @@ void PLA_FOR2C( pla_localsign_f )
 #if MANUFACTURE == CRAY
 void PLA_LOCALSQRT_F
 #else
-void PLA_FOR2C( pla_localsqrt_f )
+void PLA_FOR2C(pla_localsqrt_f,PLA_LOCALSQRT_F)
 #endif
 ( FINT *alpha, FINT *ierror )
 {
@@ -2625,7 +2625,7 @@ void PLA_FOR2C( pla_localsqrt_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJSETTOIDENTITY_F
 #else
-void PLA_FOR2C( pla_objsettoidentity_f )
+void PLA_FOR2C(pla_objsettoidentity_f,PLA_OBJSETTOIDENTITY_F)
 #endif
 ( FINT *a, FINT *ierror )
 {
@@ -2638,7 +2638,7 @@ void PLA_FOR2C( pla_objsettoidentity_f )
 #if MANUFACTURE == CRAY
 void PLA_OBJSPLITSIZETONEXTPROC_F
 #else
-void PLA_FOR2C( pla_objsplitsizetonextproc_f )
+void PLA_FOR2C(pla_objsplitsizetonextproc_f,PLA_OBJSPLITSIZETONEXTPROC_F)
 #endif
 ( FINT *obj, FINT *side, FINT *size, 
 					FINT *owner, FINT *ierror )
@@ -2661,7 +2661,7 @@ void PLA_FOR2C( pla_objsplitsizetonextproc_f )
 #if MANUFACTURE == CRAY
 void PLA_SCALX_F
 #else
-void PLA_FOR2C( pla_scalx_f )
+void PLA_FOR2C(pla_scalx_f,PLA_SCALX_F)
 #endif
 ( FINT *shape, FINT *alpha, FINT *x, FINT *ierror )
 {
@@ -2675,7 +2675,7 @@ void PLA_FOR2C( pla_scalx_f )
 #if MANUFACTURE == CRAY
 void PLA_SHOW_F
 #else
-void PLA_FOR2C( pla_show_f )
+void PLA_FOR2C(pla_show_f,PLA_SHOW_F)
 #endif
 ( FINT *obj, FINT *ierror )
 {
@@ -2688,7 +2688,7 @@ void PLA_FOR2C( pla_show_f )
 #if MANUFACTURE == CRAY
 void PLA_SYRKPERFORMLOCALPART_F
 #else
-void PLA_FOR2C( pla_syrkperformlocalpart_f )
+void PLA_FOR2C(pla_syrkperformlocalpart_f,PLA_SYRKPERFORMLOCALPART_F)
 #endif
 ( FINT *uplo, 
 		      FINT *alpha, FINT *a, 
@@ -2704,7 +2704,7 @@ void PLA_FOR2C( pla_syrkperformlocalpart_f )
 #if MANUFACTURE == CRAY
 void PLA_LU_F
 #else
-void PLA_FOR2C( pla_lu_f )
+void PLA_FOR2C(pla_lu_f,PLA_LU_F)
 #endif
 ( FINT *A, FINT *pivots, FINT *ierror )
 {
@@ -2716,7 +2716,7 @@ void PLA_FOR2C( pla_lu_f )
 #if MANUFACTURE == CRAY
 void PLA_APPLYPIVOTSTOROWS_F
 #else
-void PLA_FOR2C( pla_applypivotstorows_f )
+void PLA_FOR2C(pla_applypivotstorows_f,PLA_APPLYPIVOTSTOROWS_F)
 #endif
 ( FINT *A, FINT *pivots, FINT *ierror )
 {
@@ -2728,7 +2728,7 @@ void PLA_FOR2C( pla_applypivotstorows_f )
 #if MANUFACTURE == CRAY
 void PLA_PIVOTFROMRIGHTREV_F
 #else
-void PLA_FOR2C( pla_pivotfromrightrev_f )
+void PLA_FOR2C(pla_pivotfromrightrev_f,PLA_PIVOTFROMRIGHTREV_F)
 #endif
 ( FINT *A, FINT *pivots, FINT *ierror )
 {
@@ -2741,7 +2741,7 @@ void PLA_FOR2C( pla_pivotfromrightrev_f )
 #if MANUFACTURE == CRAY
 void PLA_CHOL_F
 #else
-void PLA_FOR2C( pla_chol_f )
+void PLA_FOR2C(pla_chol_f,PLA_CHOL_F)
 #endif
 ( FINT *uplo, FINT *A, FINT *ierror )
 {
@@ -2754,7 +2754,7 @@ void PLA_FOR2C( pla_chol_f )
 #if MANUFACTURE == CRAY
 void PLA_LOCALCHOL_F
 #else
-void PLA_FOR2C( pla_localchol_f )
+void PLA_FOR2C(pla_localchol_f,PLA_LOCALCHOL_F)
 #endif
 ( FINT *uplo, FINT *A, FINT *ierror )
 {
@@ -2766,7 +2766,7 @@ void PLA_FOR2C( pla_localchol_f )
 #if MANUFACTURE == CRAY
 void PLA_APPLYWYTRANSFORM_F
 #else
-void PLA_FOR2C( pla_applywytransform_f )
+void PLA_FOR2C(pla_applywytransform_f,PLA_APPLYWYTRANSFORM_F)
 #endif
 ( FINT *uplo, FINT *trans, FINT *W, FINT *Y, FINT *A, FINT *ierror )
 {
@@ -2780,7 +2780,7 @@ void PLA_FOR2C( pla_applywytransform_f )
 #if MANUFACTURE == CRAY
 void PLA_COMPUTEHOUSEV_F
 #else
-void PLA_FOR2C( pla_computehousev_f )
+void PLA_FOR2C(pla_computehousev_f,PLA_COMPUTEHOUSEV_F)
 #endif
 ( FINT *x, FINT *beta, FINT *ierror )
 {
@@ -2792,7 +2792,7 @@ void PLA_FOR2C( pla_computehousev_f )
 #if MANUFACTURE == CRAY
 void PLA_COMPUTEWY_F
 #else
-void PLA_FOR2C( pla_computewy_f )
+void PLA_FOR2C(pla_computewy_f,PLA_COMPUTEWY_F)
 #endif
 ( FINT *A_mv, FINT *s, FINT *W_mv, FINT *Y_mv, FINT *ierror )
 {
@@ -2805,7 +2805,7 @@ void PLA_FOR2C( pla_computewy_f )
 #if MANUFACTURE == CRAY
 void PLA_FORMQ_F
 #else
-void PLA_FOR2C( pla_formq_f )
+void PLA_FOR2C(pla_formq_f,PLA_FORMQ_F)
 #endif
 ( FINT *trans, FINT *A, FINT *s, FINT *Q, FINT *ierror )
 {
@@ -2818,7 +2818,7 @@ void PLA_FOR2C( pla_formq_f )
 #if MANUFACTURE == CRAY
 void PLA_QR_F
 #else
-void PLA_FOR2C( pla_qr_f )
+void PLA_FOR2C(pla_qr_f,PLA_QR_F)
 #endif
 ( FINT *A, FINT *s, FINT *ierror )
 {
@@ -2831,7 +2831,7 @@ void PLA_FOR2C( pla_qr_f )
 #if MANUFACTURE == CRAY
 void PLA_QSOLVE_F
 #else
-void PLA_FOR2C( pla_q_solve_f )
+void PLA_FOR2C(pla_q_solve_f,PLA_Q_SOLVE_F)
 #endif
 ( FINT *side, FINT *trans, FINT *A, FINT *s, FINT *B, FINT *ierror )
 {
@@ -2846,7 +2846,7 @@ void PLA_FOR2C( pla_q_solve_f )
 #if MANUFACTURE == CRAY
 void PLA_SVD_F
 #else
-void PLA_FOR2C( pla_svd_f )
+void PLA_FOR2C(pla_svd_f,PLA_SVD_F)
 #endif
 ( FINT *A, FINT *U, FINT *D, FINT *V, FINT *ierror )
 {

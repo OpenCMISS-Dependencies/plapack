@@ -28,7 +28,7 @@
 #if MANUFACTURE == PC
 #undef PLA_FOR2C
 /* Changed from "__" to "_" by Daniel Wirtz, 28-Jan-2015 */
-#define PLA_FOR2C( name ) name ## _
+#define PLA_FOR2C(name,NAME) name ## _
 #endif
 
 #define NUM_OF_TYPES 6
@@ -56,7 +56,7 @@ int pla_type_c2f( MPI_Datatype datatype )
 #if MANUFACTURE == CRAY
     PLA_TYPE_CONVERSION_CRAY_INIT_F( types_F );
 #else
-    PLA_FOR2C( pla_type_conversion_init_f )( types_F );
+    PLA_FOR2C(pla_type_conversion_init_f,PLA_TYPE_CONVERSION_INIT_F)( types_F );
 #endif    
     initialized = TRUE;
   }
@@ -82,7 +82,7 @@ MPI_Datatype pla_type_f2c( int datatype )
 #if MANUFACTURE == CRAY
     PLA_TYPE_CONVERSION_CRAY_INIT_F( types_F );
 #else
-    PLA_FOR2C( pla_type_conversion_init_f )( types_F );
+    PLA_FOR2C(pla_type_conversion_init_f,PLA_TYPE_CONVERSION_INIT_F)( types_F );
 #endif    
     
     initialized = TRUE;
