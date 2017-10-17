@@ -5,7 +5,6 @@ option(BUILD_TESTS "${PROJECT_NAME} - Build tests" ON)
 option(PACKAGE_CONFIG_DIR "Directory for package config files (relative to CMAKE_INSTALL_PREFIX)" "lib/cmake")
 option(WITH_OPENMP "${PROJECT_NAME} - Use OpenMP" ON)
 
-find_package(BLAS ${BLAS_VERSION} REQUIRED)
 find_package(LAPACK ${LAPACK_VERSION} REQUIRED)
 find_package(MPI REQUIRED)
 
@@ -107,7 +106,6 @@ file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/plapack-config-dependencies.cmake
     "include(CMakeFindDependencyMacro)\r\n"
     	"set(${PROJECT_NAME}_IMPORT_PREFIX \${_IMPORT_PREFIX})\r\n"
 )
-file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/plapack-config-dependencies.cmake "find_dependency(BLAS ${BLAS_VERSION})\r\n")
 file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/plapack-config-dependencies.cmake "find_dependency(LAPACK ${LAPACK_VERSION})\r\n")
 if (WITH_OPENMP)
     file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/plapack-config-dependencies.cmake "find_dependency(OpenMP)\r\n")
