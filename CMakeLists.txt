@@ -2,7 +2,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.3)
 PROJECT (PLAPACK VERSION 3.0 LANGUAGES C Fortran)
 
 option(BUILD_TESTS "${PROJECT_NAME} - Build tests" ON)
-option(PACKAGE_CONFIG_DIR "Directory for package config files (relative to CMAKE_INSTALL_PREFIX)" "lib/cmake")
+set(PACKAGE_CONFIG_DIR "lib/cmake" CACHE STRING "Directory for package config files (relative to CMAKE_INSTALL_PREFIX)")
 option(WITH_OPENMP "${PROJECT_NAME} - Use OpenMP" ON)
 
 find_package(LAPACK ${LAPACK_VERSION} REQUIRED)
