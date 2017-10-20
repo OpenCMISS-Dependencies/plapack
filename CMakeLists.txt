@@ -5,6 +5,8 @@ option(BUILD_TESTS "${PROJECT_NAME} - Build tests" ON)
 set(PACKAGE_CONFIG_DIR "lib/cmake" CACHE STRING "Directory for package config files (relative to CMAKE_INSTALL_PREFIX)")
 option(WITH_OPENMP "${PROJECT_NAME} - Use OpenMP" ON)
 
+# Find BLAS separately so we can use 'blas' target.
+find_package(BLAS ${BLAS_VERSION} REQUIRED)
 find_package(LAPACK ${LAPACK_VERSION} REQUIRED)
 find_package(MPI REQUIRED)
 
