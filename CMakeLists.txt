@@ -108,7 +108,7 @@ file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/plapack-config-dependencies.cmake
     "include(CMakeFindDependencyMacro)\r\n"
     	"set(${PROJECT_NAME}_IMPORT_PREFIX \${_IMPORT_PREFIX})\r\n"
 )
-file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/plapack-config-dependencies.cmake "find_dependency(LAPACK ${LAPACK_VERSION})\r\n")
+file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/plapack-config-dependencies.cmake "set(LAPACK_FIND_SYSTEM ${LAPACK_FIND_SYSTEM})\r\nfind_dependency(LAPACK ${LAPACK_VERSION})\r\n")
 if (WITH_OPENMP)
     file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/plapack-config-dependencies.cmake "find_dependency(OpenMP)\r\n")
 endif()
