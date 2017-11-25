@@ -94,7 +94,7 @@ endif()
 target_include_directories(plapack PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/INCLUDE> 
 )
-target_link_libraries(plapack PUBLIC blas lapack mpi-c)
+target_link_libraries(plapack PUBLIC blas lapack MPI::MPI_C)
 
 install(TARGETS plapack EXPORT plapack-config
     DESTINATION lib
