@@ -1198,7 +1198,7 @@ void PLA_FOR2C(pla_obj_vert_split_2_f,PLA_OBJ_VERT_SPLIT_2_F)
    Section 3.3: Shifting of Linear Algebra Objects
 */
 
-#if MANUFACTURE == CRnAY
+#if MANUFACTURE == CRAY
 void PLA_OBJVIEWSHIFT_F
 #else
 void PLA_FOR2C(pla_objviewshift_f,PLA_OBJVIEWSHIFT_F)

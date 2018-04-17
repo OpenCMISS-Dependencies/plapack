@@ -10,6 +10,15 @@ find_package(BLAS ${BLAS_VERSION} REQUIRED)
 find_package(LAPACK ${LAPACK_VERSION} REQUIRED)
 find_package(MPI REQUIRED)
 
+# Choose manufacture from the following list
+# - CRAY = 10
+# - IBM = 20
+# - INTEL = 30
+# - SUN = 40
+# - PC = 50
+# - SGI = 60
+# - HP = 70
+
 if (WIN32)
     set(MACHINE_TYPE 600)
 else()
@@ -88,13 +97,16 @@ if (WIN32)
     set(rand-fix rand-fix.c)
 endif()
 add_library(plapack ${template} ${api} ${blas1} ${blas2} ${blas3} ${lblas} ${copy} ${obj} ${reduce} ${util} ${io} ${pla} ${fortran} ${slv} ${rand-fix})
+if (MSVC)
+	set_target_properties(plapack PROPERTIES LINKER_LANGUAGE C)
+endif ()
 if (DEFINED FORTRAN_MANGLING)
-    target_compile_definitions(plapack PUBLIC $<BUILD_INTERFACE:${FORTRAN_MANGLING}>)
+    target_compile_definitions(plapack PUBLIC ${FORTRAN_MANGLING})
 endif()
 target_include_directories(plapack PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/INCLUDE> 
 )
-target_link_libraries(plapack PUBLIC blas lapack MPI::MPI_C)
+target_link_libraries(plapack PUBLIC blas lapack MPI::MPI_C MPI::MPI_Fortran)
 
 install(TARGETS plapack EXPORT plapack-config
     DESTINATION lib
